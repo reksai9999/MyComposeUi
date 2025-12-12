@@ -80,7 +80,7 @@ fun MyLoading(
 }
 
 @Composable
-private fun LoadingContentNormal(
+fun LoadingContentNormal(
     modifier: Modifier = Modifier,
     text: String = "",
     backgroundColor: Color = LocalColors.current.blackOpacity10,

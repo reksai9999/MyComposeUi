@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation("androidx.compose.material3:material3-window-size-class-android:1.4.0")
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    //骨架屏
+    implementation(libs.shimmer)
 }
