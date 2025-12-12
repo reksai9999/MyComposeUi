@@ -1,0 +1,54 @@
+name: Auto Release on release branch
+
+on:
+  push:
+    branches: [ release ]   # 只有往 release 分支 push 才触发
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # 允许写仓库（打 tag、建 release）
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # 必须拉全历史，才能读到全部 tag
+
+      # 1. 计算下一个版本号
+      - name: Calc next version
+        id: vers
+        run: |
+          # 获取最新 tag（按版本排序，v 前缀）
+          latest=$(git tag -l "v*" | sort -V | tail -n1)
+          if [ -z "$latest" ]; then
+            # 一个 tag 都没有，从 v0.0.0 开始
+            latest="v0.0.0"
+          fi
+          echo "Current latest tag: $latest"
+
+          # 解析主版本、次版本、修订号
+          IFS='.' read -r major minor patch <<<"${latest#v}"
+          patch=$((patch + 1))            # 默认修订号 +1
+          next="v${major}.${minor}.${patch}"
+          echo "next=$next" >> $GITHUB_OUTPUT
+          echo "Next version will be: $next"
+
+      # 2. 打 tag（轻量 tag 即可）
+      - name: Create tag
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag ${{ steps.vers.outputs.next }}
+          git push origin ${{ steps.vers.outputs.next }}
+
+      # 3. 自动生成 Release（用官方 cli）
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ steps.vers.outputs.next }} \
+            --title "Release ${{ steps.vers.outputs.next }}" \
+            --notes "Auto generated release from release branch." \
+            --latest
