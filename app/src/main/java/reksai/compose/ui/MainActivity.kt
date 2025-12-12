@@ -12,7 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import reksai.compose.core.component.icon.MyArrowDown
+import reksai.compose.core.component.icon.MyIconArrowDown
+import reksai.compose.core.component.icon.MyIconClose
 import reksai.compose.ui.ui.theme.MyComposeUiTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +41,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        MyArrowDown()
+        MyIconArrowDown()
+        MyIconClose()
     }
 }
 

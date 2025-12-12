@@ -17,7 +17,7 @@ enum class EnumArrowDirection {
 }
 
 @Composable
-fun MyArrow(
+fun MyIconArrow(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
     direction: EnumArrowDirection = EnumArrowDirection.Left,
@@ -39,11 +39,11 @@ fun MyArrow(
 }
 
 @Composable
-fun MyArrowRight(
+fun MyIconArrowRight(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
 ) {
-    MyArrow(
+    MyIconArrow(
         modifier = modifier,
         color = color,
         direction = EnumArrowDirection.Right
@@ -51,11 +51,11 @@ fun MyArrowRight(
 }
 
 @Composable
-fun MyArrowLeft(
+fun MyIconArrowLeft(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
 ) {
-    MyArrow(
+    MyIconArrow(
         modifier = modifier,
         color = color,
         direction = EnumArrowDirection.Left
@@ -63,11 +63,11 @@ fun MyArrowLeft(
 }
 
 @Composable
-fun MyArrowUp(
+fun MyIconArrowUp(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
 ) {
-    MyArrow(
+    MyIconArrow(
         modifier = modifier,
         color = color,
         direction = EnumArrowDirection.Up
@@ -75,11 +75,11 @@ fun MyArrowUp(
 }
 
 @Composable
-fun MyArrowDown(
+fun MyIconArrowDown(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
 ) {
-    MyArrow(
+    MyIconArrow(
         modifier = modifier,
         color = color,
         direction = EnumArrowDirection.Down
