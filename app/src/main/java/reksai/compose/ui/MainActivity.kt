@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import reksai.compose.core.component.icon.MyIconArrowDown
 import reksai.compose.core.component.icon.MyIconClose
+import reksai.compose.ui.ui.navigation.RouteNavigation
 import reksai.compose.ui.ui.theme.MyComposeUiTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,35 +22,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyComposeUiTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            ActivityScreen()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-
-    Column {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-        MyIconArrowDown()
-        MyIconClose()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyComposeUiTheme {
-        Greeting("Android")
-    }
+fun ActivityScreen() {
+    RouteNavigation()
 }
