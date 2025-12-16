@@ -19,6 +19,8 @@ import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
 import reksai.compose.ui.ui.navigation.MyRoute
+import reksai.compose.ui.ui.navigation.RouteAlert
+import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteDialog
 
 @Composable
@@ -40,8 +42,14 @@ fun MainScreen(
         ) {
 
             TitleDesc("Input")
+            TitleDesc("CheckBox") {
+                MyRoute.add(RouteCheckBox)
+            }
             TitleDesc("Dialog") {
                 MyRoute.add(RouteDialog)
+            }
+            TitleDesc("Alert") {
+                MyRoute.add(RouteAlert)
             }
 
         }

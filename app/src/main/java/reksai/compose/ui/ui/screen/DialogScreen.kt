@@ -19,9 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.button.MyFillButton
 import reksai.compose.core.component.dialog.MyBottomDialog
+import reksai.compose.core.component.dialog.MyDialog
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
 import reksai.compose.ui.ui.component.TopBar
@@ -31,6 +31,15 @@ fun DialogScreen(
     modifier: Modifier = Modifier,
 ) {
     var showBottomDialog by remember { mutableStateOf(false) }
+    var isDrag by remember { mutableStateOf(false) }
+    var isFull by remember { mutableStateOf(true) }
+    var height by remember { mutableStateOf(0.8f) }
+
+
+    var showDialog by remember { mutableStateOf(false) }
+    var dismissOnClickOutside by remember { mutableStateOf(true) }
+
+
     Column (
         modifier = modifier.background(LocalColors.current.background)
     ) {
@@ -45,29 +54,83 @@ fun DialogScreen(
                 .background(LocalColors.current.background)
                 .padding(16.dp)
         ) {
-            MyFillButton("Bottom Dialog") { showBottomDialog = true }
+            MyFillButton("Bottom Dialog") {
+                showBottomDialog = true
+                isDrag = false
+                isFull = true
+                height = 0.8f
+            }
+            MyFillButton("Bottom Dialog 可以拖拽") {
+                showBottomDialog = true
+                isDrag = true
+                isFull = true
+                height = 0.6f
+            }
+            MyFillButton("Bottom Dialog 可以拖拽, 半屏->全屏") {
+                showBottomDialog = true
+                isDrag = true
+                isFull = false
+                height = 1f
+            }
+
+            MyFillButton("Dialog") {
+                showDialog = true
+                dismissOnClickOutside = true
+            }
+
+            MyFillButton("Dialog 不可点击外部关闭") {
+                showDialog = true
+                dismissOnClickOutside = false
+            }
         }
     }
 
     MyBottomDialog(
         show = showBottomDialog,
-        sheetGesturesEnabled = false,
+        isDrag = isDrag,
         showDragHandle = true,
+        isExpanded = isFull,
+        showCloseIcon = true,
         onHide = { showBottomDialog = false },
     ) {
         Box (
             contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8f)
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(height)
         ) {
-            Text(
-                text = "123",
-                style = LocalTypography.current.bodySmall,
-                color = LocalColors.current.black200,
-                modifier = Modifier
-            )
+            content()
         }
     }
 
+    MyDialog(
+        show = showDialog,
+        onHide = { showDialog = false },
+        showCloseIcon = true,
+        dismissOnClickOutside = dismissOnClickOutside
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp)
+        ) {
+            content()
+        }
+    }
+
+}
+
+@Composable
+private fun content(
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = "123",
+        style = LocalTypography.current.bodySmall,
+        color = LocalColors.current.black200,
+        modifier = modifier
+    )
 }
 
 //@PreviewFontScale

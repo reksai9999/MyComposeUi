@@ -1,19 +1,16 @@
 package reksai.compose.core.component.dialog
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,16 +36,19 @@ fun MyBottomDialog(
     show: Boolean,
     onHide: () -> Unit,
     modifier: Modifier = Modifier,
-    isExpanded: Boolean = false,
+    isExpanded: Boolean = true,
     showDragHandle: Boolean = false,
     isDrag: Boolean = true,
+    showCloseIcon: Boolean = false,
+    closeIconComposer: @Composable (() -> Unit)? = null,
     shape: Shape = BottomSheetDefaults.ExpandedShape,
-    containerColor: Color = BottomSheetDefaults.ContainerColor,
-    contentColor: Color = contentColorFor(containerColor),
+    backgroundColor: Color = LocalColors.current.white200,
+    shouldDismissOnBackPress: Boolean = true,
+    shouldDismissOnClickOutside: Boolean = true,
     content: @Composable (hide:()-> Unit) -> Unit = {}
 ) {
     if (show) {
-        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = !isExpanded)
+        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = isExpanded)
         var sheetGesturesEnabled by remember { mutableStateOf(isDrag) }
         val scope = rememberCoroutineScope()
 
@@ -58,45 +58,63 @@ fun MyBottomDialog(
             sheetGesturesEnabled = sheetGesturesEnabled,
             shape = shape,
             dragHandle = null,
-            containerColor = containerColor,
-            contentColor = contentColor,
+            containerColor = backgroundColor,
+            properties = ModalBottomSheetProperties(
+                shouldDismissOnBackPress = shouldDismissOnBackPress,
+                shouldDismissOnClickOutside = shouldDismissOnClickOutside
+            ),
             modifier = modifier,
         ) {
-            Column (
+            Box(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                if (showDragHandle) {
-                    Box (
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Box (
-                            modifier = Modifier
-                                .padding(vertical = 8.dp)
-                                .width(50.dp)
-                                .height(4.dp)
-                                .clip(LocalShapes.current.circle)
-                                .background(LocalColors.current.gray500)
-                                .align(Alignment.Center)
-                        )
-                        MyIconClose(
-                            modifier = Modifier
-                                .padding(horizontal = 5.dp)
-                                .align(Alignment.CenterEnd)
-                                .clickableNormalNoEffect {
-                                    scope.launch {
-                                        sheetState.hide()
-                                    }
+                if (showCloseIcon) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .clickableNormalNoEffect {
+                                scope.launch {
+                                    sheetState.hide()
+                                    onHide()
                                 }
-                        )
+                            }
+                    ) {
+                        if (closeIconComposer != null) {
+                            closeIconComposer()
+                        } else {
+                            MyIconClose(
+                                modifier = Modifier.padding(horizontal = 15.dp, vertical = 5.dp)
+                            )
+                        }
                     }
                 }
 
-                content {
-                    scope.launch {
-                        sheetState.hide()
-                        onHide()
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Box (
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        if (showDragHandle && isDrag) {
+                            Box(
+                                modifier = Modifier
+                                    .padding(vertical = 8.dp)
+                                    .width(50.dp)
+                                    .height(4.dp)
+                                    .clip(LocalShapes.current.circle)
+                                    .background(LocalColors.current.gray500)
+                                    .align(Alignment.Center)
+                            )
+                        }
+                    }
+                    content {
+                        scope.launch {
+                            sheetState.hide()
+                            onHide()
+                        }
                     }
                 }
+
             }
 
         }

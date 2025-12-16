@@ -17,6 +17,18 @@ material3WindowSizeClassAndroid = "1.4.0"
 # 骨架屏
 shimmer = "1.0.0"
 
+# Coil
+coilCompose = "3.3.0"
+
+# 权限
+accompanistPermissions = "0.37.3"
+
+# 图片选择器
+leavesczyMatisse = "2.2.2"
+
+# 图片缩放
+zoomimageComposeGlide = "1.4.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -38,6 +50,19 @@ androidx-material3-window-size-class1-android = { group = "androidx.compose.mate
 
 # 骨架屏
 shimmer = { module = "io.github.shenzhen2017:shimmer", version.ref = "shimmer" }
+
+# Coil
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCompose" }
+
+# 权限
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+
+# 图片选择器
+leavesczy-matisse = { module = "io.github.leavesczy:matisse", version.ref = "leavesczyMatisse" }
+
+# 图片缩放
+zoomimage-compose-glide = { module = "io.github.panpf.zoomimage:zoomimage-compose-glide", version.ref = "zoomimageComposeGlide" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

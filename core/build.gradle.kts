@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -52,4 +52,17 @@ dependencies {
 
     //骨架屏
     implementation(libs.shimmer)
+
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+    //权限
+    implementation(libs.accompanist.permissions)
+
+    //图片选择器 https://github.com/leavesCZY/Matisse
+    implementation(libs.leavesczy.matisse)
+
+    //图片缩放
+    implementation(libs.zoomimage.compose.glide)
 }
