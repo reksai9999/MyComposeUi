@@ -1,12 +1,10 @@
 package reksai.compose.ui.ui.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
@@ -15,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
@@ -22,6 +21,7 @@ import reksai.compose.ui.ui.navigation.MyRoute
 import reksai.compose.ui.ui.navigation.RouteAlert
 import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteDialog
+import reksai.compose.ui.ui.navigation.RouteInputText
 
 @Composable
 fun MainScreen(
@@ -30,18 +30,22 @@ fun MainScreen(
     Column (
         modifier = modifier
     ) {
+        MyTopBar(
+            title = "Main Screen",
+            showBack = false
+        )
 
         Column (
-            verticalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .background(LocalColors.current.background)
                 .verticalScroll(rememberScrollState())
-                .statusBarsPadding()
         ) {
 
-            TitleDesc("Input")
+            TitleDesc("Input") {
+                MyRoute.add(RouteInputText)
+            }
             TitleDesc("CheckBox") {
                 MyRoute.add(RouteCheckBox)
             }
@@ -64,14 +68,13 @@ fun TitleDesc(
     onClick: () -> Unit = { }
 ) {
     Column (
-        verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.clickableNormalNoEffect(onClick)
     ) {
         Text(
             text = title,
             style = LocalTypography.current.bodyLarge,
             color = LocalColors.current.black200,
-            modifier = modifier.padding(horizontal = 15.dp)
+            modifier = modifier.padding(horizontal = 15.dp, vertical = 10.dp)
         )
         HorizontalDivider()
     }

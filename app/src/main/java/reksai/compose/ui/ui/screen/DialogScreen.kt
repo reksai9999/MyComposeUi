@@ -19,12 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.button.MyFillButton
 import reksai.compose.core.component.dialog.MyBottomDialog
 import reksai.compose.core.component.dialog.MyDialog
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
-import reksai.compose.ui.ui.component.TopBar
 
 @Composable
 fun DialogScreen(
@@ -43,7 +43,7 @@ fun DialogScreen(
     Column (
         modifier = modifier.background(LocalColors.current.background)
     ) {
-        TopBar(
+        MyTopBar(
             title = "Dialog",
         )
         Column (

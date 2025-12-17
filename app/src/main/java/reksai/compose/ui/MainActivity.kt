@@ -4,18 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import reksai.compose.core.component.icon.MyIconArrowDown
-import reksai.compose.core.component.icon.MyIconClose
 import reksai.compose.ui.ui.navigation.RouteNavigation
-import reksai.compose.ui.ui.theme.MyComposeUiTheme
+import reksai.compose.ui.utils.setSystemBarColor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,5 +20,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ActivityScreen() {
+    setSystemBarColor()
     RouteNavigation()
 }

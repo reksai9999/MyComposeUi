@@ -16,6 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.component.icon.MyIconClose
+import reksai.compose.core.config.MyConfig
 import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
@@ -24,10 +25,13 @@ import reksai.compose.core.theme.LocalShapes
 fun MyImagePreview(
     url: String,
     modifier: Modifier = Modifier,
+    urlList: List<String> = listOf(url),
     shape: Shape = LocalShapes.current.medium,
     showClose: Boolean = true,
     onClose: () -> Unit = { },
-    onClick: () -> Unit = { }
+    onClick: () -> Unit = {
+        MyConfig.openImagePreview(url, urlList)
+    }
 ) {
 
     Box(
@@ -59,8 +63,6 @@ fun MyImagePreview(
                 )
             }
         }
-
-
     }
 
 }

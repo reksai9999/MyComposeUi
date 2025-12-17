@@ -34,6 +34,7 @@ import kotlinx.coroutines.launch
 import reksai.compose.core.component.box.MyColorBox
 import reksai.compose.core.component.icon.EnumArrowDirection
 import reksai.compose.core.component.icon.MyIconArrow
+import reksai.compose.core.config.MyConfig
 import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.extension.rememberThrottledClick
 import reksai.compose.core.theme.LocalColors
@@ -46,7 +47,7 @@ fun MyTopBar(
     title: String = "",
     titleStyle: TextStyle = LocalTypography.current.titleMedium.copy(color = LocalColors.current.white200, fontWeight = FontWeight.Bold),
     showBack: Boolean = true,
-    onBackClick: () -> Unit = {  },
+    onBackClick: () -> Unit = { MyConfig.topBarBack() },
     state: ScrollState? = null,
     distance: Dp = 400.dp,// 触发回到顶部的距离
     showScrollBack: Boolean = false,
@@ -122,7 +123,8 @@ fun MyTopBar(
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.align(Alignment.Center)
+                modifier = Modifier
+                    .align(Alignment.Center)
                     .padding(vertical = 10.dp)
                     .then(
                         if (state != null) {

@@ -20,10 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.component.alert.MyAlert
 import reksai.compose.core.component.alert.MyAlertBottom
+import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.button.MyFillButton
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
-import reksai.compose.ui.ui.component.TopBar
 
 @Composable
 fun AlertScreen(
@@ -36,7 +36,7 @@ fun AlertScreen(
     Column(
         modifier = modifier
     ) {
-        TopBar(
+        MyTopBar(
             title = "Alert",
         )
         Column(

@@ -10,6 +10,12 @@ data object RouteMain : NavKey
 data object RouteCheckBox : NavKey
 
 /**
+ */
+@Serializable
+data object RouteInputText : NavKey
+
+
+/**
  * Dialog 路由
  */
 @Serializable

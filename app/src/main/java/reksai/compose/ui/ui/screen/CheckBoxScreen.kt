@@ -15,11 +15,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.base.MyCheckBox
 import reksai.compose.core.component.base.MyCheckBoxText
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
-import reksai.compose.ui.ui.component.TopBar
 
 @Composable
 fun CheckBoxScreen(
@@ -30,7 +30,7 @@ fun CheckBoxScreen(
     Column(
         modifier = modifier
     ) {
-        TopBar(
+        MyTopBar(
             title = "CheckBox",
         )
         Column(
