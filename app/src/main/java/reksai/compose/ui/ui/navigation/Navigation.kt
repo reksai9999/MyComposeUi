@@ -28,6 +28,8 @@ import androidx.navigation3.ui.NavDisplay
 import reksai.compose.ui.ui.screen.AlertScreen
 import reksai.compose.ui.ui.screen.CheckBoxScreen
 import reksai.compose.ui.ui.screen.DialogScreen
+import reksai.compose.ui.ui.screen.ImagePreviewScreen
+import reksai.compose.ui.ui.screen.ImageScreen
 import reksai.compose.ui.ui.screen.InputTextScreen
 import reksai.compose.ui.ui.screen.MainScreen
 
@@ -40,6 +42,8 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteCheckBox>(metadata = NavigationLevel.Level2) { CheckBoxScreen() }
     entry<RouteDialog> (metadata = NavigationLevel.Level2) { DialogScreen() }
     entry<RouteAlert>(metadata = NavigationLevel.Level2) { AlertScreen() }
+    entry<RouteImage>(metadata = NavigationLevel.Level2) { ImageScreen() }
+    entry<RouteImagePreview>(metadata = NavigationLevel.Level2) { ImagePreviewScreen(it.url, it.urls) }
 
 }
 

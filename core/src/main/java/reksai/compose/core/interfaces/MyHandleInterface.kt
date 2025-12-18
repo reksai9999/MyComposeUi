@@ -4,4 +4,6 @@ interface MyHandleInterface {
     fun topBarBack()
 
     fun openImagePreview(url: String, urlList: List<String> = listOf(url))
+
+    fun getFileProvider(): String
 }

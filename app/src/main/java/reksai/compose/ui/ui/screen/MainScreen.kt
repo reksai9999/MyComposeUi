@@ -21,6 +21,7 @@ import reksai.compose.ui.ui.navigation.MyRoute
 import reksai.compose.ui.ui.navigation.RouteAlert
 import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteDialog
+import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
 
 @Composable
@@ -54,6 +55,10 @@ fun MainScreen(
             }
             TitleDesc("Alert") {
                 MyRoute.add(RouteAlert)
+            }
+
+            TitleDesc("Image") {
+                MyRoute.add(RouteImage)
             }
 
         }

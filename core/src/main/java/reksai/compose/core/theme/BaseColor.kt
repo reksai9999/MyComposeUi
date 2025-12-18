@@ -30,6 +30,16 @@ data class BaseColors(
     val blackOpacity80: Color = Color(0xCC000000),
     val blackOpacity90: Color = Color(0xE6000000),
 
+    val redOpacity10: Color = Color(0x1AFF0000),
+    val redOpacity20: Color = Color(0x33FF0000),
+    val redOpacity30: Color = Color(0x4DFF0000),
+    val redOpacity40: Color = Color(0x66FF0000),
+    val redOpacity50: Color = Color(0x80FF0000),
+    val redOpacity60: Color = Color(0x99FF0000),
+    val redOpacity70: Color = Color(0xB3FF0000),
+    val redOpacity80: Color = Color(0xCCFF0000),
+    val redOpacity90: Color = Color(0xE6FF0000),
+
 
     //灰色
     val gray100: Color = Color(0xFFF6F5F9),

@@ -9,8 +9,6 @@ data object RouteMain : NavKey
 @Serializable
 data object RouteCheckBox : NavKey
 
-/**
- */
 @Serializable
 data object RouteInputText : NavKey
 
@@ -21,8 +19,21 @@ data object RouteInputText : NavKey
 @Serializable
 data object RouteDialog : NavKey
 
-/**
- */
 @Serializable
 data object RouteAlert : NavKey
+
+/**
+ * Image 路由
+ */
+@Serializable
+data object RouteImage : NavKey
+
+/**
+ * ImagePreview 路由
+ */
+@Serializable
+data class RouteImagePreview(
+    val url: String,
+    val urls: List<String>
+) : NavKey
 

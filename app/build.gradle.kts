@@ -62,5 +62,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.androidx.material3.window.size.class1.android)
 
+    //图片缩放
+    implementation(libs.zoomimage.compose.glide)
+
     implementation(project(":core"))
 }

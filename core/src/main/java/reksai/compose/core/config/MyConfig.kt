@@ -15,4 +15,8 @@ object MyConfig {
     fun openImagePreview(url: String, urlList: List<String> = listOf(url)) {
         appHandle?.openImagePreview(url, urlList)
     }
+
+    fun getFileProvider(): String {
+        return appHandle?.getFileProvider() ?: ""
+    }
 }
