@@ -61,7 +61,7 @@ dependencies {
     implementation(libs.accompanist.permissions)
 
     //图片选择器 https://github.com/leavesCZY/Matisse
-    implementation(libs.leavesczy.matisse)
+    api(libs.leavesczy.matisse)
 
     //图片缩放
     implementation(libs.zoomimage.compose.glide)

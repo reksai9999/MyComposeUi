@@ -32,6 +32,9 @@ import reksai.compose.ui.ui.screen.ImagePreviewScreen
 import reksai.compose.ui.ui.screen.ImageScreen
 import reksai.compose.ui.ui.screen.InputTextScreen
 import reksai.compose.ui.ui.screen.MainScreen
+import reksai.compose.ui.ui.screen.PagerScreen
+import reksai.compose.ui.ui.screen.SelectorScreen
+import reksai.compose.ui.ui.screen.TabsScreen
 
 val DefaultRoute = RouteMain
 var backStackGlobal: SnapshotStateList<NavKey>? = null
@@ -44,6 +47,9 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteAlert>(metadata = NavigationLevel.Level2) { AlertScreen() }
     entry<RouteImage>(metadata = NavigationLevel.Level2) { ImageScreen() }
     entry<RouteImagePreview>(metadata = NavigationLevel.Level2) { ImagePreviewScreen(it.url, it.urls) }
+    entry<RouteSelector>(metadata = NavigationLevel.Level2) { SelectorScreen() }
+    entry<RoutePager>(metadata = NavigationLevel.Level2) { PagerScreen() }
+    entry<RouteTabs>(metadata = NavigationLevel.Level2) { TabsScreen() }
 
 }
 

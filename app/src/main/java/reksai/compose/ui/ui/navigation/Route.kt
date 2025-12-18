@@ -37,3 +37,23 @@ data class RouteImagePreview(
     val urls: List<String>
 ) : NavKey
 
+/**
+ * RouteSelector 路由
+ */
+@Serializable
+data object RouteSelector : NavKey
+
+/**
+ * RoutePager 路由
+ */
+@Serializable
+data object RoutePager : NavKey
+
+/**
+ * RouteTabs 路由
+ */
+@Serializable
+data object RouteTabs : NavKey
+
+
+

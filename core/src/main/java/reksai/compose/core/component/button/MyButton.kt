@@ -34,7 +34,7 @@ fun MyButton(
     textColor: Color = BaseColors.current.white200,
     fontSize:TextUnit = TextUnit.Unspecified,
     textStyle: TextStyle = BaseTypography.current.labelMedium,
-    buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 10.dp),
+    buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     shape:Shape = BaseShapes.current.circle,
     onClick: () -> Unit = {},
 ) {
@@ -85,7 +85,7 @@ fun MyFillButton(
     textStyle: TextStyle = BaseTypography.current.labelMedium,
     backgroundColor: Color = BaseColors.current.red200,
     textColor: Color = BaseColors.current.white200,
-    buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 10.dp),
+    buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     onClick: (() -> Unit)? = null
 ) {
     val buttonModifier = Modifier
@@ -111,7 +111,7 @@ fun MyOutlineButton(
     textStyle: TextStyle = BaseTypography.current.labelMedium,
     backgroundColor: Color = BaseColors.current.transparent,
     color: Color = BaseColors.current.red200,
-    buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 10.dp),
+    buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     onClick: (() -> Unit)? = null
 ) {
     val buttonModifier = Modifier
@@ -142,8 +142,19 @@ private fun MyButtonPreview() {
             textColor = Color.White,
         )
 
+        MyFillButton(
+            text = "Fill",
+            backgroundColor = Color.Blue,
+            textColor = Color.White,
+        )
+
         MyOutlineButton(
             text = "Fill Button",
+            color = Color.Red,
+        )
+
+        MyOutlineButton(
+            text = "Fill",
             color = Color.Red,
         )
     }

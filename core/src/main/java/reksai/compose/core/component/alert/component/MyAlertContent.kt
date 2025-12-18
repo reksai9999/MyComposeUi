@@ -54,13 +54,15 @@ fun MyAlertContent(
             if (titleCompose != null) {
                 titleCompose()
             } else {
-                Text(
-                    text = title,
-                    style = titleStyle,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                )
+                if (title.isNotEmpty()) {
+                    Text(
+                        text = title,
+                        style = titleStyle,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                    )
+                }
             }
 
             if (contentCompose != null) {

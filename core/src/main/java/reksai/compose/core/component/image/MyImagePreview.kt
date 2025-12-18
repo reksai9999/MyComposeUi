@@ -57,6 +57,7 @@ fun MyImagePreview(
                     .clickableNormalNoEffect(onClose)
             ) {
                 MyIconClose(
+                    tint = LocalColors.current.white200,
                     modifier = Modifier
                         .padding(5.dp)
                         .size(18.dp)

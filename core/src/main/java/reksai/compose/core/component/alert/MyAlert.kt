@@ -12,6 +12,7 @@ import reksai.compose.core.theme.LocalTypography
 
 @Composable
 fun MyAlert(
+    modifier: Modifier = Modifier,
     show: Boolean,
     onHide: () -> Unit,
     showCloseIcon: Boolean = false,
@@ -21,7 +22,6 @@ fun MyAlert(
     title: String = "",
     content: String = "",
 
-    modifier: Modifier = Modifier,
     titleStyle: TextStyle = LocalTypography.current.bodyMedium,
     contentStyle: TextStyle = LocalTypography.current.bodySmall,
     contentPadding: PaddingValues = PaddingValues(0.dp),

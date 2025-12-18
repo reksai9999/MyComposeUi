@@ -1,6 +1,7 @@
 package reksai.compose.core.component.selector
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.component.button.MyFillButton
 import reksai.compose.core.component.button.MyOutlineButton
+import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
@@ -25,6 +27,25 @@ fun MyDateRangeSelector(
     show: Boolean,
     onHide: () -> Unit,
     modifier: Modifier = Modifier,
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
+
+    confirmCompose: @Composable () -> Unit = {
+        MyFillButton(
+            text = confirmText,
+            textStyle = LocalTypography.current.bodyMedium,
+            buttonPadding = PaddingValues(horizontal = 30.dp, vertical = 6.dp),
+        )
+    },
+    cancelCompose: @Composable () -> Unit = {
+        MyOutlineButton(
+            text = cancelText,
+            textStyle = LocalTypography.current.bodyMedium,
+            color = LocalColors.current.black200,
+            buttonPadding = PaddingValues(horizontal = 30.dp, vertical = 6.dp),
+        )
+    },
+
     onDateSelected: (startDateMillis: Long?, endDateMillis: Long?) -> Unit = { _, _ -> }
 ) {
     if (show) {
@@ -40,24 +61,27 @@ fun MyDateRangeSelector(
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
                 ) {
-                    MyOutlineButton(
-                        text = "취소",
-                        textStyle = LocalTypography.current.bodyMedium,
-                        color = LocalColors.current.black200,
-                        buttonPadding = PaddingValues(horizontal = 30.dp, vertical = 6.dp),
-                        onClick = onHide
-                    )
-                    MyFillButton(
-                        text = "저장",
-                        textStyle = LocalTypography.current.bodyMedium,
-                        buttonPadding = PaddingValues(horizontal = 30.dp, vertical = 6.dp),
-                        onClick = {
+                    Box(
+                        modifier = Modifier.clickableNormalNoEffect {
+                            onHide()
+                        }
+                    ) {
+                        cancelCompose()
+                    }
+
+                    Box(
+                        modifier = Modifier.clickableNormalNoEffect {
                             val start = dateRangePickerState.selectedStartDateMillis
                             val end = dateRangePickerState.selectedEndDateMillis
                             onDateSelected(start, end)
                             onHide()
                         }
-                    )
+                    ) {
+                        confirmCompose()
+                    }
+
+
+
                 }
             },
             modifier = modifier.scale(0.9f)

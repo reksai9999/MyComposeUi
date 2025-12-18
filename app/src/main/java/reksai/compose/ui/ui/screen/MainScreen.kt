@@ -23,6 +23,9 @@ import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteDialog
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
+import reksai.compose.ui.ui.navigation.RoutePager
+import reksai.compose.ui.ui.navigation.RouteSelector
+import reksai.compose.ui.ui.navigation.RouteTabs
 
 @Composable
 fun MainScreen(
@@ -59,6 +62,18 @@ fun MainScreen(
 
             TitleDesc("Image") {
                 MyRoute.add(RouteImage)
+            }
+
+            TitleDesc("Selector") {
+                MyRoute.add(RouteSelector)
+            }
+
+            TitleDesc("Pager") {
+                MyRoute.add(RoutePager)
+            }
+
+            TitleDesc("Tabs") {
+                MyRoute.add(RouteTabs)
             }
 
         }
