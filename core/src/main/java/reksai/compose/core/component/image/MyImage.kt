@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -71,8 +72,8 @@ fun MyImage(
 private fun MyImageContentPreview() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
             .background(LocalColors.current.background)
+            .padding(16.dp)
     ) {
         Box(
             modifier = Modifier
