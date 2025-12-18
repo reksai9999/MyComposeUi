@@ -148,7 +148,7 @@ private fun MyPagerPreview() {
     MyPager(
         items = listOf(1, 2, 3, 4, 5),
         initPageIndex = 2
-    ) { item, pagerState ->
+    ) { _, _ ->
         Box(
             modifier = Modifier
                 .fillMaxWidth()
