@@ -14,10 +14,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.zj.shimmer.shimmer
 import reksai.compose.core.theme.LocalColors
 
@@ -29,8 +32,16 @@ fun MyImage(
     contentScale: ContentScale = ContentScale.Crop,
 ) {
     var isLoading by remember { mutableStateOf(true) }
+    val context = LocalContext.current
+    val model = remember(image) {
+        ImageRequest.Builder(context)
+            .data(image)
+            .crossfade(true)
+            .build()
+    }
+
     AsyncImage(
-        model = image,
+        model = model,
         contentDescription = null,
         contentScale = contentScale,
         colorFilter = colorFilter,
