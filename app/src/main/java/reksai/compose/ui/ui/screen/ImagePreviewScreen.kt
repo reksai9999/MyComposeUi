@@ -1,5 +1,10 @@
 package reksai.compose.ui.ui.screen
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -43,41 +48,53 @@ fun ImagePreviewScreen(
             model = urlList[page],
             modifier = Modifier.fillMaxSize(),
         ) {
-            GlideZoomAsyncImage(
-                model = urlList[page],
-                contentDescription = "view image",
-                contentScale = ContentScale.FillWidth,
-                onTap = {
-                    MyRoute.back()
+
+            AnimatedContent(
+                targetState = state,
+                transitionSpec = {
+                    fadeIn(animationSpec = tween(300)) togetherWith fadeOut(animationSpec = tween(300))
                 },
                 modifier = Modifier.fillMaxSize()
-            )
-            when (state) {
-                RequestState.Failure -> {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-                        Text(text = "로딩 실패, 다시 시도해 주세요", color = LocalColors.current.white)
-                    }
-                }
+            ) { target ->
+                when (target) {
 
-                RequestState.Loading -> {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-                        LineSpinFadeLoaderIndicator(
-                            color = LocalColors.current.white,
-                            rectCount = 10,
-                            penThickness = 10f,
-                            radius = 40f,
-                            elementHeight = 15f,
+                    RequestState.Failure -> {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize(),
+                        ) {
+                            Text(text = "failure", color = LocalColors.current.white)
+                        }
+                    }
+
+                    RequestState.Loading -> {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize(),
+                        ) {
+                            LineSpinFadeLoaderIndicator(
+                                color = LocalColors.current.white,
+                                rectCount = 10,
+                                penThickness = 10f,
+                                radius = 40f,
+                                elementHeight = 15f,
+                            )
+                        }
+                    }
+
+                    is RequestState.Success -> {
+                        GlideZoomAsyncImage(
+                            model = urlList[page],
+                            contentDescription = "view image",
+                            contentScale = ContentScale.FillWidth,
+                            onTap = {
+                                MyRoute.back()
+                            },
+                            scrollBar = null,
+                            modifier = Modifier.fillMaxSize()
                         )
                     }
                 }
-
-                is RequestState.Success -> {}
             }
 
         }
@@ -91,7 +108,7 @@ fun ImagePreviewScreen(
 @Composable
 private fun ImagePreviewScreenPreview() {
     ImagePreviewScreen(
-        url = "https://example.com/image.jpg",
+        url = "https://example.com/image1.jpg",
         urlList = listOf("https://example.com/image1.jpg", "https://example.com/image2.jpg"),
         modifier = Modifier.fillMaxSize()
     )

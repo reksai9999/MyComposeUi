@@ -22,11 +22,18 @@ import reksai.compose.core.component.image.MyImage
 import reksai.compose.core.component.image.MyImagePreview
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
+import java.lang.Math.random
 
 @Composable
 fun ImageScreen(
     modifier: Modifier = Modifier,
 ) {
+    val random = random() * 10
+    val imgList = listOf(
+        "https://picsum.photos/seed/${random}_1/1080",
+        "https://picsum.photos/seed/${random}_2/1080",
+        "https://picsum.photos/seed/${random}_3/1080",
+    )
     Column(
         modifier = modifier
     ) {
@@ -67,14 +74,14 @@ fun ImageScreen(
             )
 
             MyImagePreview(
-                url = "https://picsum.photos/200",
-                urlList = listOf("https://picsum.photos/200", "https://picsum.photos/300", "https://picsum.photos/400"),
+                url = imgList.first(),
+                urlList = imgList,
                 modifier = Modifier.size(120.dp, 150.dp)
             )
 
             MyImagePreview(
-                url = "https://picsum.photos/200",
-                urlList = listOf("https://picsum.photos/200", "https://picsum.photos/300", "https://picsum.photos/400"),
+                url = imgList.first(),
+                urlList = imgList,
                 showClose = false,
                 modifier = Modifier.size(120.dp, 150.dp)
             )
