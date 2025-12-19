@@ -20,7 +20,7 @@ import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.button.MyOutlineButton
 import reksai.compose.core.component.image.MyImage
 import reksai.compose.core.component.image.MyImagePreview
-import reksai.compose.core.config.MyConfig
+import reksai.compose.core.config.MyGlobalConfig
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
 import java.lang.Math.random
@@ -78,7 +78,7 @@ fun ImageScreen(
                 url = imgList.first(),
                 urlList = imgList,
                 onClose = {
-                    MyConfig.sendSnackBarMessage("点击了关闭按钮")
+                    MyGlobalConfig.sendSnackBarMessage("点击了关闭按钮")
                 },
                 modifier = Modifier.size(120.dp, 150.dp)
             )

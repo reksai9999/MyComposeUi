@@ -14,7 +14,7 @@ import github.leavesczy.matisse.MediaResource
 import github.leavesczy.matisse.MediaType
 import github.leavesczy.matisse.SmartCaptureStrategy
 import reksai.compose.core.component.permissions.rememberImagePermissionsState
-import reksai.compose.core.config.MyConfig
+import reksai.compose.core.config.MyGlobalConfig
 
 data class MyImageSelectorState(
     val launch: () -> Unit
@@ -32,7 +32,7 @@ fun rememberMyImageSelector(
         mediaType = MediaType.ImageOnly,
         captureStrategy = SmartCaptureStrategy(
             FileProviderCaptureStrategy(
-                authority = MyConfig.getFileProvider()
+                authority = MyGlobalConfig.getFileProvider()
             )
         )
     ),

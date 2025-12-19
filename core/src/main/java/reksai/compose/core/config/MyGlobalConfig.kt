@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import reksai.compose.core.interfaces.MyHandleInterface
 
-object MyConfig {
+object MyGlobalConfig {
     private var _appHandle: MyHandleInterface? = null
 
     private val _snackBarMessageFlow = MutableSharedFlow<String>()

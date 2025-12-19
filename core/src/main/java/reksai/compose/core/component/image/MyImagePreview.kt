@@ -16,7 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.component.icon.MyIconClose
-import reksai.compose.core.config.MyConfig
+import reksai.compose.core.config.MyGlobalConfig
 import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
@@ -30,7 +30,7 @@ fun MyImagePreview(
     showClose: Boolean = true,
     onClose: () -> Unit = { },
     onClick: () -> Unit = {
-        MyConfig.openImagePreview(url, urlList)
+        MyGlobalConfig.openImagePreview(url, urlList)
     }
 ) {
 

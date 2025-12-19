@@ -11,34 +11,41 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
-import reksai.compose.core.config.MyConfig
+import kotlinx.coroutines.delay
+import reksai.compose.core.config.MyGlobalConfig
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
 
+/**
+ * 全局 Snackbar 提示组件
+ * 使用方式: MyGlobalConfig.sendSnackBarMessage("点击了关闭按钮")
+ */
 @Composable
 fun MySnackBar(
     modifier: Modifier = Modifier,
+    closeTime: Long = 2000,
     hostState: SnackbarHostState = remember { SnackbarHostState() },
 ) {
-    val scope = rememberCoroutineScope()
     LaunchedEffect(Unit) {
-        MyConfig.snackBarMessageFlow.collect { message ->
+        MyGlobalConfig.snackBarMessageFlow.collect { message ->
             if (message.isNotEmpty()) {
                 hostState.showSnackbar(
                     message = message,
                     duration = SnackbarDuration.Indefinite
                 )
-                scope.launch {
-                    kotlinx.coroutines.delay(1000)
-                    hostState.currentSnackbarData?.dismiss()
-                }
             }
+        }
+    }
+
+    // 1秒后自动关闭
+    LaunchedEffect(hostState.currentSnackbarData) {
+        if (hostState.currentSnackbarData != null) {
+            delay(closeTime)
+            hostState.currentSnackbarData?.dismiss()
         }
     }
     SnackbarHost(

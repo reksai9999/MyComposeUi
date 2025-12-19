@@ -8,7 +8,7 @@ import github.leavesczy.matisse.MatisseCaptureContract
 import github.leavesczy.matisse.MediaResource
 import github.leavesczy.matisse.SmartCaptureStrategy
 import reksai.compose.core.component.permissions.rememberCameraPermissionsState
-import reksai.compose.core.config.MyConfig
+import reksai.compose.core.config.MyGlobalConfig
 
 data class MyTakePictureSelectorState(
     val launch: () -> Unit
@@ -22,7 +22,7 @@ fun rememberMyTakePictureSelector(
     matisse: MatisseCapture = MatisseCapture(
         captureStrategy = SmartCaptureStrategy(
             FileProviderCaptureStrategy(
-                authority = MyConfig.getFileProvider()
+                authority = MyGlobalConfig.getFileProvider()
             )
         )
     ),

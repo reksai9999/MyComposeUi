@@ -1,7 +1,7 @@
 package reksai.compose.ui
 
 import android.app.Application
-import reksai.compose.core.config.MyConfig
+import reksai.compose.core.config.MyGlobalConfig
 
 class MyApplication : Application() {
 
@@ -11,6 +11,6 @@ class MyApplication : Application() {
     }
 
     fun init() {
-        MyConfig.init(MyConfigHandle())
+        MyGlobalConfig.init(MyConfigHandle())
     }
 }
