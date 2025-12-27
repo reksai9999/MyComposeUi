@@ -3,6 +3,7 @@ package reksai.compose.core.component.bar
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -46,7 +47,9 @@ fun MyTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
     titleStyle: TextStyle = LocalTypography.current.titleMedium.copy(color = LocalColors.current.white200, fontWeight = FontWeight.Bold),
+    titlePadding: PaddingValues = PaddingValues(vertical = 10.dp),
     showBack: Boolean = true,
+    backBtnColor: Color = LocalColors.current.white200,
     onBackClick: () -> Unit = { MyGlobalConfig.topBarBack() },
     state: ScrollState? = null,
     distance: Dp = 400.dp,// 触发回到顶部的距离
@@ -105,7 +108,7 @@ fun MyTopBar(
                         ) {
                             MyIconArrow(
                                 direction = EnumArrowDirection.Left,
-                                color = LocalColors.current.white200,
+                                color = backBtnColor,
                                 modifier = Modifier
                                     .clickableNormalNoEffect(throttledClick)
                             )
@@ -125,7 +128,7 @@ fun MyTopBar(
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .padding(vertical = 10.dp)
+                    .padding(titlePadding)
                     .then(
                         if (state != null) {
                             Modifier.clickableNormalNoEffect {
@@ -184,6 +187,6 @@ private fun MyTitleBarPreview() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        MyTopBar(title = "标题")
+        MyTopBar(title = "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题")
     }
 }
