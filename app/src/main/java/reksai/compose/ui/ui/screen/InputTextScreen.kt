@@ -25,6 +25,10 @@ import reksai.compose.core.component.base.MyInputText
 import reksai.compose.core.component.icon.MyIconSearch
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
+import reksai.compose.core.transformation.input.ChinaPhoneNumberInputTransformation
+import reksai.compose.core.transformation.input.UsaPhoneNumberInputTransformation
+import reksai.compose.core.transformation.output.ChinaPhoneNumberOutputTransformation
+import reksai.compose.core.transformation.output.UsaPhoneNumberOutputTransformation
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -118,6 +122,24 @@ fun InputTextScreen(
                 state = state,
                 placeholder = "MyInputText placeholder",
                 isError = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+
+            MyInputText(
+                state = state,
+                placeholder = "usa phone",
+                inputTransformation = UsaPhoneNumberInputTransformation(),
+                outputTransformation = UsaPhoneNumberOutputTransformation(),
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+
+            MyInputText(
+                state = state,
+                placeholder = "china phone",
+                inputTransformation = ChinaPhoneNumberInputTransformation(),
+                outputTransformation = ChinaPhoneNumberOutputTransformation(),
                 modifier = Modifier
                     .fillMaxWidth()
             )
