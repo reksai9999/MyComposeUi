@@ -32,6 +32,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import reksai.compose.core.config.MyGlobalConfig
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.ObjectInputStream
@@ -360,6 +361,14 @@ fun rememberDebouncedClick(
             }
         }
     }
+}
+
+/**
+ * 显示提示信息 toast
+ * @param message 提示信息
+ */
+fun tip(message: String) {
+    MyGlobalConfig.sendSnackBarMessage(message)
 }
 
 

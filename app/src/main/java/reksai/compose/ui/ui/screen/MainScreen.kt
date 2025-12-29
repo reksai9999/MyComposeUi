@@ -20,6 +20,7 @@ import reksai.compose.core.theme.LocalTypography
 import reksai.compose.ui.ui.navigation.MyRoute
 import reksai.compose.ui.ui.navigation.RouteAlert
 import reksai.compose.ui.ui.navigation.RouteCheckBox
+import reksai.compose.ui.ui.navigation.RouteColorText
 import reksai.compose.ui.ui.navigation.RouteDialog
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
@@ -74,6 +75,10 @@ fun MainScreen(
 
             TitleDesc("Tabs") {
                 MyRoute.add(RouteTabs)
+            }
+
+            TitleDesc("Color Text") {
+                MyRoute.add(RouteColorText)
             }
 
         }

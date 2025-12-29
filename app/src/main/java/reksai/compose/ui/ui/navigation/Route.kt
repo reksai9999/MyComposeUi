@@ -55,5 +55,12 @@ data object RoutePager : NavKey
 @Serializable
 data object RouteTabs : NavKey
 
+/**
+ * RouteColorText 路由
+ */
+@Serializable
+data object RouteColorText : NavKey
+
+
 
 
