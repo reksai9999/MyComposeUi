@@ -61,6 +61,13 @@ data object RouteTabs : NavKey
 @Serializable
 data object RouteColorText : NavKey
 
+/**
+ * RouteMenu 路由
+ */
+@Serializable
+data object RouteMenu : NavKey
+
+
 
 
 

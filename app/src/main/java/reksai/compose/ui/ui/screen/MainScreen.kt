@@ -24,6 +24,7 @@ import reksai.compose.ui.ui.navigation.RouteColorText
 import reksai.compose.ui.ui.navigation.RouteDialog
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
+import reksai.compose.ui.ui.navigation.RouteMenu
 import reksai.compose.ui.ui.navigation.RoutePager
 import reksai.compose.ui.ui.navigation.RouteSelector
 import reksai.compose.ui.ui.navigation.RouteTabs
@@ -79,6 +80,10 @@ fun MainScreen(
 
             TitleDesc("Color Text") {
                 MyRoute.add(RouteColorText)
+            }
+
+            TitleDesc("Menu") {
+                MyRoute.add(RouteMenu)
             }
 
         }

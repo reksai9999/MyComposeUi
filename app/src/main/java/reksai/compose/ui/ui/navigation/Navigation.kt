@@ -33,6 +33,7 @@ import reksai.compose.ui.ui.screen.ImagePreviewScreen
 import reksai.compose.ui.ui.screen.ImageScreen
 import reksai.compose.ui.ui.screen.InputTextScreen
 import reksai.compose.ui.ui.screen.MainScreen
+import reksai.compose.ui.ui.screen.MenuScreenVM
 import reksai.compose.ui.ui.screen.PagerScreen
 import reksai.compose.ui.ui.screen.SelectorScreen
 import reksai.compose.ui.ui.screen.TabsScreen
@@ -52,6 +53,7 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RoutePager>(metadata = NavigationLevel.Level2) { PagerScreen() }
     entry<RouteTabs>(metadata = NavigationLevel.Level2) { TabsScreen() }
     entry<RouteColorText>(metadata = NavigationLevel.Level2) { ColorTextScreenVM() }
+    entry<RouteMenu>(metadata = NavigationLevel.Level2) { MenuScreenVM() }
 
 }
 

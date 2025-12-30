@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.PopupProperties
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
@@ -27,6 +28,7 @@ fun <T> MyMenu(
     list: List<T>,
     modifier: Modifier = Modifier,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
+    clippingEnabled: Boolean = false,
     vertical: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(5.dp),
     itemContent: @Composable (
         item: T,
@@ -43,6 +45,9 @@ fun <T> MyMenu(
         border = BorderStroke(0.dp, LocalColors.current.transparent),
         shadowElevation = 0.dp,
         tonalElevation = 0.dp,
+        properties = PopupProperties(
+            clippingEnabled = clippingEnabled
+        ),
         modifier = modifier,
     ) {
         Column(
@@ -65,6 +70,7 @@ fun MyMenu(
     show: Boolean,
     onHide: () -> Unit,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
+    clippingEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
     MyMenu(
@@ -74,6 +80,7 @@ fun MyMenu(
         list = listOf(Any()),
         modifier = modifier,
         offset = offset,
+        clippingEnabled = clippingEnabled,
         itemContent = { _, _, _ -> content() }
     )
 }
