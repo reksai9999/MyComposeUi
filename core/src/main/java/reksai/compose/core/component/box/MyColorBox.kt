@@ -2,6 +2,7 @@ package reksai.compose.core.component.box
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,7 +20,7 @@ fun MyColorBox(
     startColor: Color = Color.Red,
     endColor: Color = Color.White,
     isHorizontal: Boolean = true,
-    content: @Composable () -> Unit = {}
+    content: @Composable BoxScope.() -> Unit = {}
 ) {
     val brush = if (isHorizontal) Brush.horizontalGradient(
         colors = listOf(startColor, endColor)
@@ -31,8 +32,7 @@ fun MyColorBox(
     Box(
         contentAlignment = contentAlignment,
         modifier = modifier.background(brush = brush)
-    )
-    {
+    ) {
         content()
     }
 }
