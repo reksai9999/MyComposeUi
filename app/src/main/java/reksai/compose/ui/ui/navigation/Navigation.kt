@@ -27,6 +27,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import reksai.compose.ui.ui.screen.AlertScreen
 import reksai.compose.ui.ui.screen.CheckBoxScreen
+import reksai.compose.ui.ui.screen.ColorBoxScreenVM
 import reksai.compose.ui.ui.screen.ColorTextScreenVM
 import reksai.compose.ui.ui.screen.DialogScreen
 import reksai.compose.ui.ui.screen.ImagePreviewScreen
@@ -54,6 +55,7 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteTabs>(metadata = NavigationLevel.Level2) { TabsScreen() }
     entry<RouteColorText>(metadata = NavigationLevel.Level2) { ColorTextScreenVM() }
     entry<RouteMenu>(metadata = NavigationLevel.Level2) { MenuScreenVM() }
+    entry<RouteColorBox>(metadata = NavigationLevel.Level2) { ColorBoxScreenVM() }
 
 }
 
