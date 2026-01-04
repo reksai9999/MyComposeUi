@@ -55,7 +55,7 @@ fun MyColorBox(
         modifier = Modifier
             .then(modifier)
             .then(
-                if (colors.isEmpty()) {
+                if (colors.size < 2) {
                     Modifier
                 } else {
                     when (type) {
@@ -106,6 +106,23 @@ private fun MyColorBoxPreview() {
             type = MyColorBoxType.Radial,
             modifier = Modifier.size(200.dp)
         )
+
+        Box {
+            MyColorBox(
+                colors = listOf(LocalColors.current.yellow, LocalColors.current.blue),
+                type = MyColorBoxType.Horizontal,
+                modifier = Modifier.size(200.dp)
+            )
+            MyColorBox(
+                colors = listOf(
+                    LocalColors.current.blackOpacity10,
+                    LocalColors.current.blackOpacity70,
+                ),
+                type = MyColorBoxType.Radial,
+                modifier = Modifier.size(200.dp)
+            )
+        }
+
 
         MyColorBox(
             colors = listOf(),

@@ -13,6 +13,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
@@ -188,19 +189,32 @@ fun setStatusBarsColor(
 
 @Composable
 fun setNavigationBar(
-    isDark: Boolean = false,
+    isDark: Boolean = false, // 这里的 isDark 似乎是指背景是否为深色，从而决定图标是浅色
+    isTransparent: Boolean = true // 新增参数：是否透明
 ) {
-    // 当前背景色
     val backgroundColor = if (isDark) Color.Black else Color.White
     val view = LocalView.current
 
-    LaunchedEffect(isDark) {
+    // 使用 SideEffect 或 LaunchedEffect 均可，SideEffect 在组合完成时立即执行，通常更适合 Window 设置
+    SideEffect {
         val window = (view.context as Activity).window
         val insetsController = WindowCompat.getInsetsController(window, window.decorView)
 
         // 背景深 → 用浅色图标；背景浅 → 用深色图标
         val useLightIcons = backgroundColor.luminance() < 0.5f
         insetsController.isAppearanceLightNavigationBars = !useLightIcons
+
+        // 新增：处理透明度
+        if (isTransparent) {
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                window.navigationBarColor = android.graphics.Color.TRANSPARENT
+            }
+            if (android.os.Build.VERSION.SDK_INT >= 29) {
+                window.isNavigationBarContrastEnforced = false
+            }
+            // 确保内容延伸
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
     }
 }
 
