@@ -73,6 +73,13 @@ data object RouteMenu : NavKey
 @Serializable
 data object RouteColorBox : NavKey
 
+/**
+ * RouteBadge 路由
+ */
+@Serializable
+data object RouteBadge : NavKey
+
+
 
 
 
