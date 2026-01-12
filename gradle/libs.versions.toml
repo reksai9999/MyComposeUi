@@ -24,7 +24,7 @@ coilCompose = "3.3.0"
 accompanistPermissions = "0.37.3"
 
 # 图片选择器
-leavesczyMatisse = "2.2.2"
+leavesczyMatisse = "2.3.0"
 
 # 图片缩放
 zoomimageComposeGlide = "1.4.0"
