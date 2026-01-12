@@ -50,6 +50,7 @@ fun rememberMyImageSelector(
             }
         } ?: "image/*",
         uri = uri,
+        size = 0L,
     )
 
     val pickerLauncher =
