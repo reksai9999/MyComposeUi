@@ -115,7 +115,7 @@ fun MyInputText(
                     modifier = Modifier
                 ) {
                     AnimatedVisibility(
-                        visible = showClearIcon && state.text.isNotEmpty(),
+                        visible = showClearIcon && state.text.isNotEmpty() && enabled && !readOnly,
                         enter = fadeIn(animationSpec = tween(300)),
                         exit = fadeOut(animationSpec = tween(200))
                     ) {
