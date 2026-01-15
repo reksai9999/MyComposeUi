@@ -26,9 +26,14 @@ import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldLabelPosition
 import androidx.compose.material3.TextFieldLabelScope
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
@@ -88,7 +93,7 @@ fun MyInputText(
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.SingleLine,
     contentPadding: PaddingValues = PaddingValues(horizontal = 8.dp, vertical = 5.dp),
 ) {
-
+    var isFocused by remember { mutableStateOf(false) }
     Column {
         OutlinedTextField(
             state = state,
@@ -115,7 +120,7 @@ fun MyInputText(
                     modifier = Modifier
                 ) {
                     AnimatedVisibility(
-                        visible = showClearIcon && state.text.isNotEmpty() && enabled && !readOnly,
+                        visible = showClearIcon && state.text.isNotEmpty() && enabled && !readOnly && isFocused,
                         enter = fadeIn(animationSpec = tween(300)),
                         exit = fadeOut(animationSpec = tween(200))
                     ) {
@@ -140,6 +145,7 @@ fun MyInputText(
             lineLimits = lineLimits,
             contentPadding = contentPadding,
             modifier = modifier
+                .onFocusChanged { isFocused = it.isFocused }
                 .then(Modifier.height(36.dp))
         )
         supportingText?.let {
