@@ -5,16 +5,16 @@ import java.util.Date
 import java.util.Locale
 
 //long 转 yyyy-MM-dd HH:mm:ss 字符串
-fun Long.toDateTimeString(): String {
-    return SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date(this))
+fun Long.toDateTimeString(fmt: String = "yyyy-MM-dd HH:mm:ss"): String {
+    return SimpleDateFormat(fmt, Locale.getDefault()).format(Date(this))
 }
 
 //long 转 yyyy-MM-dd
-fun Long.toDateString(): String {
-    return SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(this))
+fun Long.toDateString(fmt: String = "yyyy-MM-dd"): String {
+    return SimpleDateFormat(fmt, Locale.getDefault()).format(Date(this))
 }
 
 //long 转 yy.MM.dd
-fun Long.toDateShortString(): String {
-    return SimpleDateFormat("yy.MM.dd", Locale.getDefault()).format(Date(this))
+fun Long.toDateShortString(fmt: String = "yy.MM.dd"): String {
+    return SimpleDateFormat(fmt, Locale.getDefault()).format(Date(this))
 }
