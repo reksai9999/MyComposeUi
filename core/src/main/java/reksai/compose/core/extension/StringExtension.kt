@@ -109,8 +109,8 @@ fun String.toProductHtml(): String {
                         imgs[i].onclick = function () {
                             //得到当前点击的img的src
                             var src = this.getAttribute('src');
-                            //JsToAndroidProduct.onImageClick(src);
-                            JsToAndroidProduct.onImageListClick(src, JSON.stringify(imgList));
+                            //JsToAndroidImagePreview.onImageClick(src);
+                            JsToAndroidImagePreview.onImageListClick(src, JSON.stringify(imgList));
                         }
                     }
                 </script>
@@ -148,8 +148,8 @@ fun String.toNoticeHtml(): String {
                         imgs[i].onclick = function () {
                             //得到当前点击的img的src
                             var src = this.getAttribute('src');
-                            //JsToAndroidProduct.onImageClick(src);
-                            JsToAndroidProduct.onImageListClick(src, JSON.stringify(imgList));
+                            //JsToAndroidImagePreview.onImageClick(src);
+                            JsToAndroidImagePreview.onImageListClick(src, JSON.stringify(imgList));
                         }
                     }
                 </script>

@@ -25,6 +25,9 @@ data class MyImageSelectorState(
  */
 @Composable
 fun rememberMyImageSelector(
+    alertText: String = "",
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
     maxSelectableCount: Int = 1,
     matisse: Matisse = Matisse(
         maxSelectable = maxSelectableCount,
@@ -85,6 +88,9 @@ fun rememberMyImageSelector(
 
 
     val permissionState = rememberImagePermissionsState(
+        alertText = alertText,
+        confirmText = confirmText,
+        cancelText = cancelText,
         onPermissionsGranted = {
             if (Build.VERSION.SDK_INT >= 33) {
                 pickerLauncher33.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))

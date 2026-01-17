@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Badge
@@ -21,6 +22,10 @@ import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
 
+/**
+ * 显示角标的容器 - 只有数字角标, 超过99 显示99+
+ * @param count 角标数量，0则不显示
+ */
 @Composable
 fun MyBadgedBox(
     modifier: Modifier = Modifier,
@@ -61,6 +66,54 @@ fun MyBadgedBox(
     }
 }
 
+/**
+ * 显示角标的容器 - 任意 string 内容
+ * @param badgeContent 角标内容，传空则不显示
+ */
+@Composable
+fun MyBadgedBox(
+    modifier: Modifier = Modifier,
+    badgeModifier: Modifier = Modifier,
+    badgeContent: String = "",
+    style: TextStyle = LocalTypography.current.labelSmall,
+    onlyPoint: Boolean = false,
+    backgroundColor: Color = Color.Red,
+    textColor: Color = Color.White,
+    content: @Composable () -> Unit
+) {
+    BadgedBox(
+        badge = {
+            if (badgeContent.isNotEmpty()) {
+                if (!onlyPoint) {
+                    Badge(
+                        containerColor = backgroundColor,
+                        contentColor = textColor,
+                        modifier = Modifier.then(badgeModifier)
+                    ) {
+                        Text(
+                            text = badgeContent,
+                            style = style,
+                            modifier = Modifier
+                        )
+                    }
+                } else {
+                    Badge(
+                        containerColor = backgroundColor,
+                    )
+                }
+
+            }
+        },
+        modifier = modifier
+    ) {
+        content()
+    }
+}
+
+/**
+ * 显示角标的容器 - 一个红点
+ * @param show 是否显示角标
+ */
 @Composable
 fun MyBadgedBox(
     show: Boolean,
@@ -90,6 +143,27 @@ private fun MyBadgedBoxPreview() {
     ) {
         MyBadgedBox(
             count = 99
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(50.dp)
+                    .background(LocalColors.current.gray600)
+            )
+        }
+
+        MyBadgedBox(
+            badgeContent = "N"
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(50.dp)
+                    .background(LocalColors.current.gray600)
+            )
+        }
+
+        MyBadgedBox(
+            badgeContent = "New",
+            badgeModifier = Modifier.offset(x = (-10).dp)
         ) {
             Box(
                 modifier = Modifier

@@ -19,6 +19,9 @@ data class MyTakePictureSelectorState(
  */
 @Composable
 fun rememberMyTakePictureSelector(
+    alertText: String = "",
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
     matisse: MatisseCapture = MatisseCapture(
         captureStrategy = SmartCaptureStrategy(
             FileProviderCaptureStrategy(
@@ -35,6 +38,9 @@ fun rememberMyTakePictureSelector(
             }
         }
     val permissionState = rememberCameraPermissionsState(
+        alertText = alertText,
+        confirmText = confirmText,
+        cancelText = cancelText,
         onPermissionsGranted = {
             takePictureLauncher.launch(matisse)
         }
