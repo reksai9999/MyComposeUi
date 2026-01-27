@@ -24,6 +24,7 @@ import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteColorBox
 import reksai.compose.ui.ui.navigation.RouteColorText
 import reksai.compose.ui.ui.navigation.RouteDialog
+import reksai.compose.ui.ui.navigation.RouteExtension
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
 import reksai.compose.ui.ui.navigation.RouteMenu
@@ -50,7 +51,9 @@ fun MainScreen(
                 .background(LocalColors.current.background)
                 .verticalScroll(rememberScrollState())
         ) {
-
+            TitleDesc("Extension") {
+                MyRoute.add(RouteExtension)
+            }
             TitleDesc("Input") {
                 MyRoute.add(RouteInputText)
             }

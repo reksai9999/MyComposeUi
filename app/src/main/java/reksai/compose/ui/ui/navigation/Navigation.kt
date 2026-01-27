@@ -31,6 +31,7 @@ import reksai.compose.ui.ui.screen.CheckBoxScreen
 import reksai.compose.ui.ui.screen.ColorBoxScreenVM
 import reksai.compose.ui.ui.screen.ColorTextScreenVM
 import reksai.compose.ui.ui.screen.DialogScreen
+import reksai.compose.ui.ui.screen.ExtensionScreenVM
 import reksai.compose.ui.ui.screen.ImagePreviewScreen
 import reksai.compose.ui.ui.screen.ImageScreen
 import reksai.compose.ui.ui.screen.InputTextScreen
@@ -58,6 +59,7 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteMenu>(metadata = NavigationLevel.Level2) { MenuScreenVM() }
     entry<RouteColorBox>(metadata = NavigationLevel.Level2) { ColorBoxScreenVM() }
     entry<RouteBadge>(metadata = NavigationLevel.Level2) { BadgeScreenVM() }
+    entry<RouteExtension>(metadata = NavigationLevel.Level2) { ExtensionScreenVM() }
 
 }
 

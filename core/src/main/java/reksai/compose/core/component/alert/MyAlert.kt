@@ -32,8 +32,8 @@ fun MyAlert(
     onCancel: () -> Unit = {},
 
     titleCompose: @Composable (() -> Unit)? = null,
-    contentCompose: @Composable (() -> Unit)? = null,
     buttonCompose: @Composable (() -> Unit)? = null,
+    contentCompose: @Composable (() -> Unit)? = null,
 ) {
     MyDialog(
         show = show,

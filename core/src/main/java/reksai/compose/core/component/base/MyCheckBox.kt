@@ -77,10 +77,11 @@ fun MyCheckBox(
 @Composable
 fun MyCheckBoxText(
     text: String,
+    modifier: Modifier = Modifier,
+
     textStyle: TextStyle = LocalTypography.current.bodySmall,
     horizontalArrangement: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(2.5.dp),
 
-    modifier: Modifier = Modifier,
     checked: Boolean = false,
     shape: Shape = LocalShapes.current.circle,
 
@@ -99,13 +100,13 @@ fun MyCheckBoxText(
     Row(
         verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
         horizontalArrangement = horizontalArrangement,
-        modifier = Modifier.then(
+        modifier = modifier.then(
             if (onChange != null) Modifier.clickableNormalNoEffect { onChange(!checked) }
             else Modifier
         )
     ) {
         MyCheckBox(
-            modifier = modifier,
+            modifier = Modifier,
             checked = checked,
             shape = shape,
             selectBackgroundColor = selectBackgroundColor,
