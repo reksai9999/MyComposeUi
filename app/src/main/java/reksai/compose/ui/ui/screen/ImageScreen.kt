@@ -72,6 +72,17 @@ fun ImageScreen(
             }
 
             Text(
+                text = "gif图片",
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.black200,
+                modifier = Modifier
+            )
+            MyImage(
+                image = "https://eoullim.co.kr/images/emoji/1.gif",
+                modifier = Modifier.size(120.dp, 150.dp)
+            )
+
+            Text(
                 text = "图片预览",
                 style = LocalTypography.current.bodySmall,
                 color = LocalColors.current.black200,
