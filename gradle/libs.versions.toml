@@ -29,6 +29,9 @@ leavesczyMatisse = "2.3.0"
 # 图片缩放
 zoomimageComposeGlide = "1.4.0"
 
+# Window Size Class
+material3WindowSizeClass = "1.4.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -64,6 +67,9 @@ leavesczy-matisse = { module = "io.github.leavesczy:matisse", version.ref = "lea
 
 # 图片缩放
 zoomimage-compose-glide = { module = "io.github.panpf.zoomimage:zoomimage-compose-glide", version.ref = "zoomimageComposeGlide" }
+
+# Window Size Class
+androidx-compose-material3-window-size-class1 = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3WindowSizeClass" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

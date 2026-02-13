@@ -50,6 +50,9 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
+    // Window Size Class
+    implementation(libs.androidx.compose.material3.window.size.class1)
+
     //骨架屏
     implementation(libs.shimmer)
 
