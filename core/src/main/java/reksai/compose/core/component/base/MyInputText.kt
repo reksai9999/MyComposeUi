@@ -18,7 +18,9 @@ import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.foundation.text.input.clearText
+import androidx.compose.material3.OutlinedSecureTextField
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -45,10 +47,16 @@ import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
 
+enum class MyInputTextType {
+    Default,
+    Password
+}
 @Composable
 fun MyInputText(
     state: TextFieldState,
     modifier: Modifier = Modifier,
+    type: MyInputTextType = MyInputTextType.Default,
+    textObfuscationMode: TextObfuscationMode = TextObfuscationMode.RevealLastTyped,
     textStyle: TextStyle = LocalTypography.current.bodyMedium,
     labelPosition: TextFieldLabelPosition = TextFieldLabelPosition.Attached(),
     label: @Composable (TextFieldLabelScope.() -> Unit)? = null,
@@ -95,63 +103,119 @@ fun MyInputText(
 ) {
     var isFocused by remember { mutableStateOf(false) }
     Column {
-        OutlinedTextField(
-            state = state,
-            textStyle = textStyle,
-            placeholder = {
-                Text(
-                    text = placeholder,
-                    style = placeholderStyle,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-            },
-            labelPosition = labelPosition,
-            label = label,
-            enabled = enabled,
-            readOnly = readOnly,
-            shape = shape,
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            prefix = prefix,
-            suffix = {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                ) {
-                    AnimatedVisibility(
-                        visible = showClearIcon && state.text.isNotEmpty() && enabled && !readOnly && isFocused,
-                        enter = fadeIn(animationSpec = tween(300)),
-                        exit = fadeOut(animationSpec = tween(200))
+        // 密码
+        if (type == MyInputTextType.Password) {
+            OutlinedSecureTextField(
+                state = state,
+                textObfuscationMode = textObfuscationMode,
+                textStyle = textStyle,
+                placeholder = {
+                    Text(
+                        text = placeholder,
+                        style = placeholderStyle,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                labelPosition = labelPosition,
+                label = label,
+                enabled = enabled,
+                shape = shape,
+                leadingIcon = leadingIcon,
+                trailingIcon = trailingIcon,
+                prefix = prefix,
+                suffix = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
                     ) {
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier
-                                .clickableNormalNoEffect { state.clearText() }
+                        AnimatedVisibility(
+                            visible = showClearIcon && state.text.isNotEmpty() && enabled && !readOnly && isFocused,
+                            enter = fadeIn(animationSpec = tween(300)),
+                            exit = fadeOut(animationSpec = tween(200))
                         ) {
-                            clearIconCompose()
+                            Box(
+                                contentAlignment = Alignment.Center,
+                                modifier = Modifier
+                                    .clickableNormalNoEffect { state.clearText() }
+                            ) {
+                                clearIconCompose()
+                            }
                         }
-                    }
 
-                    suffix?.invoke()
-                }
-            },
-            isError = isError,
-            colors = colors,
-            inputTransformation = inputTransformation,
-            outputTransformation = outputTransformation,
-            keyboardOptions = keyboardOptions,
-            onKeyboardAction = onKeyboardAction,
-            lineLimits = lineLimits,
-            contentPadding = contentPadding,
-            modifier = modifier
-                .onFocusChanged { isFocused = it.isFocused }
-                .then(Modifier.height(36.dp))
-        )
+                        suffix?.invoke()
+                    }
+                },
+                isError = isError,
+                colors = colors,
+                inputTransformation = inputTransformation,
+                keyboardOptions = keyboardOptions,
+                onKeyboardAction = onKeyboardAction,
+                contentPadding = contentPadding,
+                modifier = modifier
+                    .onFocusChanged { isFocused = it.isFocused }
+                    .then(Modifier.height(36.dp))
+            )
+        }
+        // 普通文本
+        else {
+            OutlinedTextField(
+                state = state,
+                textStyle = textStyle,
+                placeholder = {
+                    Text(
+                        text = placeholder,
+                        style = placeholderStyle,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                labelPosition = labelPosition,
+                label = label,
+                enabled = enabled,
+                readOnly = readOnly,
+                shape = shape,
+                leadingIcon = leadingIcon,
+                trailingIcon = trailingIcon,
+                prefix = prefix,
+                suffix = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                    ) {
+                        AnimatedVisibility(
+                            visible = showClearIcon && state.text.isNotEmpty() && enabled && !readOnly && isFocused,
+                            enter = fadeIn(animationSpec = tween(300)),
+                            exit = fadeOut(animationSpec = tween(200))
+                        ) {
+                            Box(
+                                contentAlignment = Alignment.Center,
+                                modifier = Modifier
+                                    .clickableNormalNoEffect { state.clearText() }
+                            ) {
+                                clearIconCompose()
+                            }
+                        }
+
+                        suffix?.invoke()
+                    }
+                },
+                isError = isError,
+                colors = colors,
+                inputTransformation = inputTransformation,
+                outputTransformation = outputTransformation,
+                keyboardOptions = keyboardOptions,
+                onKeyboardAction = onKeyboardAction,
+                lineLimits = lineLimits,
+                contentPadding = contentPadding,
+                modifier = modifier
+                    .onFocusChanged { isFocused = it.isFocused }
+                    .then(Modifier.height(36.dp))
+            )
+        }
         supportingText?.let {
             it()
         }
     }
-
 
 }
