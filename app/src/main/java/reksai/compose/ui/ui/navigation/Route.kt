@@ -85,6 +85,11 @@ data object RouteBadge : NavKey
 @Serializable
 data object RouteExtension : NavKey
 
+/**
+ * RouteDropdown 路由
+ */
+@Serializable
+data object RouteDropdown : NavKey
 
 
 

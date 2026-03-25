@@ -5,15 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,10 +34,10 @@ import androidx.compose.ui.window.PopupProperties
 
 @Composable
 fun <T> MyDropdown(
+    modifier: Modifier = Modifier,
     list: List<T>,
     defaultValue: T? = null,
     onItemSelected: (T) -> Unit,
-    modifier: Modifier = Modifier,
     dropdownModifier: Modifier = Modifier,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     properties: PopupProperties = PopupProperties(focusable = true),
@@ -79,32 +76,23 @@ fun <T> MyDropdown(
                     MyDropdownPositionProvider(offset, density, navBarHeightPx)
                 }
             ) {
-                Surface(
-                    shape = shape,
-                    color = containerColor,
-                    tonalElevation = tonalElevation,
-                    shadowElevation = shadowElevation,
-                    border = border,
-                    modifier = Modifier.width(IntrinsicSize.Max)
+                Column(
+                    modifier = dropdownModifier.verticalScroll(rememberScrollState())
                 ) {
-                    Column(
-                        modifier = dropdownModifier.verticalScroll(rememberScrollState())
-                    ) {
-                        list.forEach { item ->
-                            val isSelected = item == selectedItem
-                            Box(
-                                modifier = Modifier.clickable(
-                                    onClick = {
-                                        selectedItem = item
-                                        expanded = false
-                                        onItemSelected(item)
-                                    },
-                                    indication = null,
-                                    interactionSource = remember { MutableInteractionSource() }
-                                )
-                            ) {
-                                itemContent(item, isSelected)
-                            }
+                    list.forEach { item ->
+                        val isSelected = item == selectedItem
+                        Box(
+                            modifier = Modifier.clickable(
+                                onClick = {
+                                    selectedItem = item
+                                    expanded = false
+                                    onItemSelected(item)
+                                },
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            )
+                        ) {
+                            itemContent(item, isSelected)
                         }
                     }
                 }

@@ -24,6 +24,7 @@ import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteColorBox
 import reksai.compose.ui.ui.navigation.RouteColorText
 import reksai.compose.ui.ui.navigation.RouteDialog
+import reksai.compose.ui.ui.navigation.RouteDropdown
 import reksai.compose.ui.ui.navigation.RouteExtension
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
@@ -89,6 +90,10 @@ fun MainScreen(
 
             TitleDesc("Menu") {
                 MyRoute.add(RouteMenu)
+            }
+
+            TitleDesc("Dropdown") {
+                MyRoute.add(RouteDropdown)
             }
 
             TitleDesc("Color Box") {
