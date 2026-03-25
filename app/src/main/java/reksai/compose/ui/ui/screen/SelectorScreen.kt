@@ -122,7 +122,7 @@ fun SelectorScreen(
                 list = dropdownItems,
                 defaultValue = "选项2",
                 onItemSelected = { selectedDropdownItem = it },
-                dropdownModifier = Modifier.heightIn(max = 60.dp),
+                dropdownModifier = Modifier.heightIn(max = 150.dp),
                 properties = PopupProperties(clippingEnabled = false),
                 shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
                 containerColor = LocalColors.current.background,

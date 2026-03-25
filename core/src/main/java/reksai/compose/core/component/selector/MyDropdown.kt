@@ -6,6 +6,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -54,6 +56,10 @@ fun <T> MyDropdown(
     var selectedItem by remember { mutableStateOf(defaultValue) }
     val density = LocalDensity.current
 
+    // 获取导航栏高度像素
+    val navInsets = WindowInsets.navigationBars
+    val navBarHeightPx = navInsets.getBottom(density)
+
     Box(modifier = modifier) {
         Box(
             modifier = Modifier.clickable(
@@ -69,8 +75,8 @@ fun <T> MyDropdown(
             Popup(
                 onDismissRequest = { expanded = false },
                 properties = properties,
-                popupPositionProvider = remember(offset, density) {
-                    MyDropdownPositionProvider(offset, density)
+                popupPositionProvider = remember(offset, density, navBarHeightPx) {
+                    MyDropdownPositionProvider(offset, density, navBarHeightPx)
                 }
             ) {
                 Surface(
@@ -109,7 +115,8 @@ fun <T> MyDropdown(
 
 private class MyDropdownPositionProvider(
     val contentOffset: DpOffset,
-    val density: Density
+    val density: Density,
+    val navBarHeightPx: Int
 ) : PopupPositionProvider {
     override fun calculatePosition(
         anchorBounds: IntRect,
@@ -122,18 +129,17 @@ private class MyDropdownPositionProvider(
 
         val x = anchorBounds.left + xOffset
 
-        // 1. 获取屏幕/窗口的高度（如果设置了 clippingEnabled = false，这通常是全屏高度）
-        val screenHeight = windowSize.height
+        // 核心判断逻辑
+        // 1. windowSize.height 在 clippingEnabled = false 时通常代表物理屏幕总高度
+        // 2. 根据用户测试，使用 + navBarHeightPx 能达到最理想的自动切换边界效果
+        val limitY = windowSize.height + navBarHeightPx
 
-        // 2. 获取锚点的底部 Y 坐标（向下弹出的起始点）
-        val anchorBottomY = anchorBounds.bottom
+        // 3. 计算如果向下弹，弹出框底部的绝对 Y 坐标
+        val popupBottomYIfDown = anchorBounds.bottom + popupContentSize.height + yOffset
 
-        // 3. 预测如果向下弹出，弹出框的底部将会落在屏幕的哪个绝对 Y 坐标
-        val popupBottomYIfDown = anchorBottomY + popupContentSize.height + yOffset
-
-        // 改进的自动逻辑：完全基于绝对坐标计算
-        // 只要预测的底部坐标 <= 屏幕总高，就证明下方空间绝对塞得下
-        val showBelow = popupBottomYIfDown <= screenHeight
+        // 4. 只有当弹出框底部“真的超过了”计算出的边界，才向上弹
+        // 否则（即便只差 1 像素），也坚持向下弹
+        val showBelow = popupBottomYIfDown <= limitY
 
         val y = if (showBelow) {
             anchorBounds.bottom + yOffset
