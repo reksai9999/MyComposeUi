@@ -1,24 +1,24 @@
 [versions]
 agp = "9.1.0"
-kotlin = "2.2.21"
-coreKtx = "1.17.0"
+kotlin = "2.3.20"
+coreKtx = "1.18.0"
 lifecycleRuntimeKtx = "2.10.0"
-activityCompose = "1.12.2"
-composeBom = "2026.01.00"
+activityCompose = "1.13.0"
+composeBom = "2026.03.00"
 
 # Navigation 3
-nav3Core = "1.0.0"
+nav3Core = "1.0.1"
 lifecycleViewmodelNav3 = "2.10.0"
-kotlinSerialization = "2.3.0"
-kotlinxSerializationCore = "1.9.0"
-material3AdaptiveNav3 = "1.3.0-alpha06"
+kotlinSerialization = "2.3.20"
+kotlinxSerializationCore = "1.10.0"
+material3AdaptiveNav3 = "1.3.0-alpha09"
 material3WindowSizeClassAndroid = "1.4.0"
 
 # 骨架屏
 shimmer = "1.0.0"
 
 # Coil
-coilCompose = "3.3.0"
+coilCompose = "3.4.0"
 
 # 权限
 accompanistPermissions = "0.37.3"
