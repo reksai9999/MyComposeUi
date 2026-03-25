@@ -93,7 +93,7 @@ fun DropdownScreen(
                         text = item,
                         color = if (isSelected) LocalColors.current.blue else LocalColors.current.black,
                         modifier = Modifier
-                            .padding(16.dp)
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
                     )
                 },
                 dropdownModifier = Modifier
@@ -137,7 +137,7 @@ fun DropdownScreen(
                     )
                 },
                 dropdownModifier = Modifier
-                    .padding(top = 5.dp, end = 40.dp)
+                    .padding(top = 5.dp, start = 20.dp, end = 20.dp)
                     .heightIn(max = 150.dp)
                     .background(LocalColors.current.white200)
                     .border(1.dp, LocalColors.current.gray, LocalShapes.current.small)
@@ -175,7 +175,7 @@ fun DropdownScreen(
                             text = item,
                             color = if (isSelected) LocalColors.current.blue else LocalColors.current.black,
                             modifier = Modifier
-                                .padding(16.dp)
+                                .padding(horizontal = 10.dp, vertical = 5.dp)
                         )
                     },
                     dropdownModifier = Modifier

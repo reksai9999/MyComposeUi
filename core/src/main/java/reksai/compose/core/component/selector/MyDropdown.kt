@@ -115,10 +115,22 @@ private class MyDropdownPositionProvider(
         val xOffset = with(density) { contentOffset.x.roundToPx() }
         val yOffset = with(density) { contentOffset.y.roundToPx() }
 
-        val x = anchorBounds.left + xOffset
+        // 横向自动识别逻辑：
+        // 1. 默认与锚点左侧对齐
+        val preferredX = anchorBounds.left + xOffset
+        // 2. 预测如果左对齐，弹出框右边缘的绝对 X 坐标
+        val rightEdgeIfPreferred = preferredX + popupContentSize.width
 
-        // 核心判断逻辑
-        // 1. windowSize.height 在 clippingEnabled = false 时通常代表物理屏幕总高度
+        // 3. 判断如果右边缘超出了屏幕宽度，就改用右侧对齐（向左展开）
+        val x = if (rightEdgeIfPreferred <= windowSize.width) {
+            preferredX
+        } else {
+            // 与锚点右侧对齐，并防止越过屏幕最左侧
+            val rightAlignedX = anchorBounds.right - popupContentSize.width + xOffset
+            kotlin.math.max(0, rightAlignedX)
+        }
+
+        // 核心判断逻辑        // 1. windowSize.height 在 clippingEnabled = false 时通常代表物理屏幕总高度
         // 2. 根据用户测试，使用 + navBarHeightPx 能达到最理想的自动切换边界效果
         val limitY = windowSize.height + navBarHeightPx
 
