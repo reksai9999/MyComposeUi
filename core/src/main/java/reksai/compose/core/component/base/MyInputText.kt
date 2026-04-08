@@ -32,6 +32,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -275,6 +276,8 @@ fun MyInputText(
     contentPadding: PaddingValues = PaddingValues(horizontal = 8.dp, vertical = 5.dp),
 ) {
     val state = remember { TextFieldState(initialText = value) }
+    val currentOnChangeValue by rememberUpdatedState(onChangeValue)
+    val currentValue by rememberUpdatedState(value)
 
     LaunchedEffect(value) {
         val current = state.text.toString()
@@ -289,8 +292,8 @@ fun MyInputText(
         snapshotFlow { state.text.toString() }
             .distinctUntilChanged()
             .collect {
-                if (it != value) {
-                    onChangeValue(it)
+                if (it != currentValue) {
+                    currentOnChangeValue(it)
                 }
             }
     }
