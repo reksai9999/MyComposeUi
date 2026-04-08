@@ -28,6 +28,7 @@ import reksai.compose.ui.ui.navigation.RouteDropdown
 import reksai.compose.ui.ui.navigation.RouteExtension
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
+import reksai.compose.ui.ui.navigation.RouteInputTextValue
 import reksai.compose.ui.ui.navigation.RouteMenu
 import reksai.compose.ui.ui.navigation.RoutePager
 import reksai.compose.ui.ui.navigation.RouteSelector
@@ -57,6 +58,9 @@ fun MainScreen(
             }
             TitleDesc("Input") {
                 MyRoute.add(RouteInputText)
+            }
+            TitleDesc("Input Value") {
+                MyRoute.add(RouteInputTextValue)
             }
             TitleDesc("CheckBox") {
                 MyRoute.add(RouteCheckBox)

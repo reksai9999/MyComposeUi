@@ -13,10 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.input.TextFieldLineLimits
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,23 +29,19 @@ import reksai.compose.core.component.base.MyInputTextType
 import reksai.compose.core.component.icon.MyIconSearch
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
-import reksai.compose.core.transformation.input.ChinaPhoneNumberInputTransformation
-import reksai.compose.core.transformation.input.UsaPhoneNumberInputTransformation
-import reksai.compose.core.transformation.output.ChinaPhoneNumberOutputTransformation
-import reksai.compose.core.transformation.output.UsaPhoneNumberOutputTransformation
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun InputTextScreen(
+fun InputTextValueScreen(
     modifier: Modifier = Modifier,
 ) {
-    val state = rememberTextFieldState()
+    var value by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
     ) {
         MyTopBar(
-            title = "Input Text",
+            title = "Input Text Value",
         )
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -55,21 +54,24 @@ fun InputTextScreen(
                 .imePadding()
         ) {
             MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "MyInputText value/onChangeValue",
                 modifier = Modifier.fillMaxWidth()
             )
 
             MyInputText(
-                state = state,
+                value = value,
+                onChangeValue = { value = it },
                 type = MyInputTextType.Password,
-                placeholder = "MyInputText placeholder",
+                placeholder = "Password value/onChangeValue",
                 modifier = Modifier.fillMaxWidth()
             )
 
             MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "MyInputText with label",
                 label = { Text("Label") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -77,18 +79,9 @@ fun InputTextScreen(
             )
 
             MyInputText(
-                state = state,
-                type = MyInputTextType.Password,
-                placeholder = "MyInputText placeholder",
-                label = { Text("Label") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            )
-
-            MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "MultiLine value/onChangeValue",
                 lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = 1, maxHeightInLines = 10),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -96,19 +89,23 @@ fun InputTextScreen(
             )
 
             MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "With suffix",
                 suffix = {
-                    MyIconSearch(modifier = Modifier
-                        .padding(start = 5.dp)
-                        .size(18.dp))
+                    MyIconSearch(
+                        modifier = Modifier
+                            .padding(start = 5.dp)
+                            .size(18.dp)
+                    )
                 },
                 modifier = Modifier.fillMaxWidth()
             )
 
             MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "With prefix",
                 prefix = {
                     MyIconSearch(tint = LocalColors.current.red, modifier = Modifier.size(18.dp))
                 },
@@ -116,66 +113,36 @@ fun InputTextScreen(
             )
 
             MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-
-            MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
-                supportingText = {
-                    Text(
-                        text = "supportingText",
-                        style = LocalTypography.current.bodySmall,
-                        color = LocalColors.current.red,
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-
-            MyInputText(
-                state = state,
-                placeholder = "MyInputText placeholder",
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "Error state",
                 isError = true,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
 
             MyInputText(
-                state = state,
-                placeholder = "usa phone",
-                inputTransformation = UsaPhoneNumberInputTransformation(),
-                outputTransformation = UsaPhoneNumberOutputTransformation(),
-                modifier = Modifier
-                    .fillMaxWidth()
+                value = value,
+                onChangeValue = { value = it },
+                placeholder = "Disabled",
+                enabled = false,
+                modifier = Modifier.fillMaxWidth()
             )
 
-            MyInputText(
-                state = state,
-                placeholder = "china phone",
-                inputTransformation = ChinaPhoneNumberInputTransformation(),
-                outputTransformation = ChinaPhoneNumberOutputTransformation(),
-                modifier = Modifier
-                    .fillMaxWidth()
+            Text(
+                text = "当前值: $value",
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.gray660,
             )
 
             Spacer(modifier = Modifier.height(100.dp))
-
         }
     }
-
 }
 
-//@PreviewFontScale
-//@PreviewScreenSizes
 @Preview(device = "id:pixel_9_pro", showBackground = true)
 @Composable
-private fun InputTextScreenPreview() {
-    InputTextScreen(
+private fun InputTextValueScreenPreview() {
+    InputTextValueScreen(
         modifier = Modifier.fillMaxSize()
     )
 }

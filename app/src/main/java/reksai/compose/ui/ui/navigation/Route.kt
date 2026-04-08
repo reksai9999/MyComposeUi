@@ -91,6 +91,9 @@ data object RouteExtension : NavKey
 @Serializable
 data object RouteDropdown : NavKey
 
+@Serializable
+data object RouteInputTextValue : NavKey
+
 
 
 
