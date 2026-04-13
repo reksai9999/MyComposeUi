@@ -41,6 +41,7 @@ import reksai.compose.ui.ui.screen.MainScreen
 import reksai.compose.ui.ui.screen.MenuScreenVM
 import reksai.compose.ui.ui.screen.PagerScreen
 import reksai.compose.ui.ui.screen.SelectorScreen
+import reksai.compose.ui.ui.screen.SuperTextScreenVM
 import reksai.compose.ui.ui.screen.TabsScreen
 
 val DefaultRoute = RouteMain
@@ -64,6 +65,7 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteBadge>(metadata = NavigationLevel.Level2) { BadgeScreenVM() }
     entry<RouteExtension>(metadata = NavigationLevel.Level2) { ExtensionScreenVM() }
     entry<RouteInputTextValue>(metadata = NavigationLevel.Level2) { InputTextValueScreen() }
+    entry<RouteSuperText>(metadata = NavigationLevel.Level2) { SuperTextScreenVM() }
 
 }
 

@@ -94,6 +94,12 @@ data object RouteDropdown : NavKey
 @Serializable
 data object RouteInputTextValue : NavKey
 
+/**
+ * RouteSuperText 路由
+ */
+@Serializable
+data object RouteSuperText : NavKey
+
 
 
 

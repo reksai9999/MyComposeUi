@@ -32,6 +32,7 @@ import reksai.compose.ui.ui.navigation.RouteInputTextValue
 import reksai.compose.ui.ui.navigation.RouteMenu
 import reksai.compose.ui.ui.navigation.RoutePager
 import reksai.compose.ui.ui.navigation.RouteSelector
+import reksai.compose.ui.ui.navigation.RouteSuperText
 import reksai.compose.ui.ui.navigation.RouteTabs
 
 @Composable
@@ -92,6 +93,10 @@ fun MainScreen(
                 MyRoute.add(RouteColorText)
             }
 
+            TitleDesc("Super Text") {
+                MyRoute.add(RouteSuperText)
+            }
+
             TitleDesc("Menu") {
                 MyRoute.add(RouteMenu)
             }
@@ -107,6 +112,7 @@ fun MainScreen(
             TitleDesc("Badge Box") {
                 MyRoute.add(RouteBadge)
             }
+
 
         }
     }
