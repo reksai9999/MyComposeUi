@@ -10,16 +10,17 @@ import android.webkit.WebView.setWebContentsDebuggingEnabled
 import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
+import java.security.MessageDigest
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun MySuperWebView(
     modifier: Modifier = Modifier,
-    key: String = "default",
     url: String = "",
     data: String = "",
     postData: ByteArray? = null,
@@ -30,7 +31,14 @@ fun MySuperWebView(
     onShouldOverrideUrlLoading: (WebView?, WebResourceRequest?) -> Boolean = { _, _ -> false },
     onError: (WebView?, WebResourceRequest?, WebResourceError?) -> Unit = { _, _, _ -> },
 ) {
-    val viewModel: MySuperWebViewModel = viewModel()
+    val contentKey = remember(url, data, postData) {
+        val baseString = "$url|$data|${postData?.contentToString() ?: ""}"
+        MessageDigest.getInstance("MD5")
+            .digest(baseString.toByteArray())
+            .joinToString("") { "%02x".format(it) }
+    }
+
+    val viewModel: MySuperWebViewModel = viewModel(key = contentKey)
 
     val currentOnCreated by rememberUpdatedState(onCreated)
     val currentOnPageFinished by rememberUpdatedState(onPageFinished)
@@ -39,7 +47,8 @@ fun MySuperWebView(
 
     AndroidView(
         factory = { context ->
-            val (webViewInstance, isNew) = viewModel.getOrCreateWebView(key, context)
+            val webViewInstance = viewModel.getOrCreateWebView(context)
+            val isNew = viewModel.isNew
 
             // 如果已经有父视图，先移除
             (webViewInstance.parent as? ViewGroup)?.removeView(webViewInstance)

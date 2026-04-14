@@ -35,6 +35,7 @@ import reksai.compose.ui.ui.navigation.RouteMenu
 import reksai.compose.ui.ui.navigation.RoutePager
 import reksai.compose.ui.ui.navigation.RouteSelector
 import reksai.compose.ui.ui.navigation.RouteSuperText
+import reksai.compose.ui.ui.navigation.RouteSuperWebView
 import reksai.compose.ui.ui.navigation.RouteTabs
 
 @Composable
@@ -85,6 +86,10 @@ fun MainScreen(
 
             TitleDesc("Pager") {
                 MyRoute.add(RoutePager)
+            }
+
+            TitleDesc("Super WebView") {
+                MyRoute.add(RouteSuperWebView)
             }
 
             TitleDesc("Tabs") {

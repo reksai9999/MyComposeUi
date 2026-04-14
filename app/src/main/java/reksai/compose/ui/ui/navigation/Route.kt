@@ -56,6 +56,12 @@ data object RoutePager : NavKey
 data object RouteTabs : NavKey
 
 /**
+ * SuperWebView 路由
+ */
+@Serializable
+data object RouteSuperWebView : NavKey
+
+/**
  * RouteColorText 路由
  */
 @Serializable
@@ -99,10 +105,3 @@ data object RouteInputTextValue : NavKey
  */
 @Serializable
 data object RouteSuperText : NavKey
-
-
-
-
-
-
-

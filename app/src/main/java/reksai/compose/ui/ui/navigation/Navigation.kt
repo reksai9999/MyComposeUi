@@ -42,6 +42,7 @@ import reksai.compose.ui.ui.screen.MenuScreenVM
 import reksai.compose.ui.ui.screen.PagerScreen
 import reksai.compose.ui.ui.screen.SelectorScreen
 import reksai.compose.ui.ui.screen.SuperTextScreenVM
+import reksai.compose.ui.ui.screen.SuperWebViewScreen
 import reksai.compose.ui.ui.screen.TabsScreen
 
 val DefaultRoute = RouteMain
@@ -56,6 +57,7 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteImage>(metadata = NavigationLevel.Level2) { ImageScreen() }
     entry<RouteImagePreview>(metadata = NavigationLevel.Level2) { ImagePreviewScreen(it.url, it.urls) }
     entry<RouteSelector>(metadata = NavigationLevel.Level2) { SelectorScreen() }
+    entry<RouteSuperWebView>(metadata = NavigationLevel.Level2) { SuperWebViewScreen() }
     entry<RoutePager>(metadata = NavigationLevel.Level2) { PagerScreen() }
     entry<RouteTabs>(metadata = NavigationLevel.Level2) { TabsScreen() }
     entry<RouteColorText>(metadata = NavigationLevel.Level2) { ColorTextScreenVM() }

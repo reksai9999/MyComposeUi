@@ -1,30 +1,42 @@
 package reksai.compose.core.component.webview
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.MutableContextWrapper
+import android.util.Log
 import android.webkit.WebView
 import androidx.lifecycle.ViewModel
 
 class MySuperWebViewModel : ViewModel() {
-    private val webViewMap = mutableMapOf<String, WebView>()
+    @SuppressLint("StaticFieldLeak")
+    private var webView: WebView? = null
 
-    fun getOrCreateWebView(key: String, context: Context): Pair<WebView, Boolean> {
-        var isNew = false
-        val webView = webViewMap.getOrPut(key) {
+    var isNew: Boolean = false
+        private set
+
+    fun getOrCreateWebView(context: Context): WebView {
+        if (webView == null) {
             isNew = true
-            WebView(context) // 使用 Context 创建 WebView
+            // 使用 MutableContextWrapper 包装 Context，避免 ViewModel 强引用导致 Activity 内存泄漏
+            webView = WebView(MutableContextWrapper(context))
+        } else {
+            isNew = false
+            // 每次获取时，更新 baseContext 为最新的 Context，防止因为屏幕旋转等导致引用的还是旧的 Activity Context
+            (webView?.context as? MutableContextWrapper)?.baseContext = context
         }
-        return Pair(webView, isNew)
+        return webView!!
     }
 
     override fun onCleared() {
         super.onCleared()
-        // 遍历销毁所有 WebView
-        webViewMap.values.forEach { webView ->
-            webView.stopLoading()
-            webView.clearHistory()
-            webView.removeAllViews()
-            webView.destroy()
+        webView?.let {
+            it.stopLoading()
+            it.clearHistory()
+            it.removeAllViews()
+            it.destroy()
         }
-        webViewMap.clear()
+        webView = null
+
+        Log.d("webView", "webView 已经释放 webView = null")
     }
 }
