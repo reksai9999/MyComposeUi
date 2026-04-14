@@ -3,12 +3,20 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
+    id("maven-publish")
 }
 
 android {
     namespace = "reksai.compose.core"
     compileSdk {
         version = release(36)
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 
     defaultConfig {
@@ -35,6 +43,19 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = project.group.toString()
+                artifactId = "core"
+                version = project.version.toString()
+            }
+        }
     }
 }
 
