@@ -88,7 +88,7 @@ fun RouteNavigation() {
         transitionSpec = { slideInHorizontally(initialOffsetX = { it }) togetherWith slideOutHorizontally(targetOffsetX = { -it }) },
         popTransitionSpec = { slideInHorizontally(initialOffsetX = { -it }) togetherWith slideOutHorizontally(targetOffsetX = { it }) },
         predictivePopTransitionSpec = { slideInHorizontally(initialOffsetX = { -it }) togetherWith slideOutHorizontally(targetOffsetX = { it }) },
-        sceneStrategy = listDetailStrategy,
+//        sceneStrategy = listDetailStrategy,
         entryProvider = DefaultEntryProvider
     )
 }
