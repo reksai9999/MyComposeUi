@@ -14,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import reksai.compose.core.config.MyGlobalConfig
 
+/**
+ * 会重载的 WebView 每次返回Composable刷新
+ */
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun MyWebView(
