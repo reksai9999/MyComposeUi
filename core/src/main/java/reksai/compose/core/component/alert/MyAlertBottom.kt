@@ -14,6 +14,7 @@ import reksai.compose.core.theme.LocalTypography
 fun MyAlertBottom(
     show: Boolean,
     onHide: () -> Unit,
+    modifier: Modifier = Modifier,
     showCloseIcon: Boolean = false,
     shouldDismissOnBackPress: Boolean = true,
     shouldDismissOnClickOutside: Boolean = true,
@@ -21,7 +22,6 @@ fun MyAlertBottom(
     title: String = "",
     content: String = "",
 
-    modifier: Modifier = Modifier,
     titleStyle: TextStyle = LocalTypography.current.bodyMedium,
     contentStyle: TextStyle = LocalTypography.current.bodySmall,
     contentPadding: PaddingValues = PaddingValues(0.dp),
