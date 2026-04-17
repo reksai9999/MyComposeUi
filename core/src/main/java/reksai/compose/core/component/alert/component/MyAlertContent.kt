@@ -34,6 +34,9 @@ fun MyAlertContent(
     onConfirm: () -> Unit = {},
     onCancel: () -> Unit = {},
 
+    showConfirmButton: Boolean = true,
+    showCancelButton: Boolean = true,
+
     titleCompose: @Composable (() -> Unit)? = null,
     contentCompose: @Composable (() -> Unit)? = null,
     buttonCompose: @Composable (() -> Unit)? = null,
@@ -79,24 +82,31 @@ fun MyAlertContent(
         if (buttonCompose != null) {
             buttonCompose()
         } else {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .navigationBarsPadding()
-            ) {
-                MyFillButton(
-                    text = confirmText,
-                    onClick = onConfirm,
-                    modifier = Modifier.weight(1f)
-                )
+            if (showConfirmButton || showCancelButton) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .navigationBarsPadding()
+                ) {
+                    if (showConfirmButton) {
+                        MyFillButton(
+                            text = confirmText,
+                            onClick = onConfirm,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
 
-                MyOutlineButton(
-                    text = cancelText,
-                    onClick = onCancel,
-                    modifier = Modifier.weight(1f)
-                )
+                    if (showCancelButton) {
+                        MyOutlineButton(
+                            text = cancelText,
+                            onClick = onCancel,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                }
             }
+
         }
 
     }

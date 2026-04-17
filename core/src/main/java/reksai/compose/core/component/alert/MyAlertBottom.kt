@@ -31,6 +31,9 @@ fun MyAlertBottom(
     onConfirm: () -> Unit = {},
     onCancel: () -> Unit = {},
 
+    showConfirmButton: Boolean = true,
+    showCancelButton: Boolean = true,
+
     titleCompose: @Composable (() -> Unit)? = null,
     contentCompose: @Composable (() -> Unit)? = null,
     buttonCompose: @Composable (() -> Unit)? = null,
@@ -62,6 +65,8 @@ fun MyAlertBottom(
                 onCancel()
                 hide()
             },
+            showConfirmButton = showConfirmButton,
+            showCancelButton = showCancelButton,
             titleCompose = titleCompose,
             contentCompose = contentCompose,
             buttonCompose = buttonCompose,
