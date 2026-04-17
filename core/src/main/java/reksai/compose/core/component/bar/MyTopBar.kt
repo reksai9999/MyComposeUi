@@ -38,10 +38,10 @@ import reksai.compose.core.component.icon.EnumArrowDirection
 import reksai.compose.core.component.icon.MyIconArrow
 import reksai.compose.core.config.MyGlobalConfig
 import reksai.compose.core.extension.clickableNormalNoEffect
-import reksai.compose.core.extension.rememberThrottledClick
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
+import reksai.compose.core.utils.rememberThrottledClick
 
 @Composable
 fun MyTopBar(
