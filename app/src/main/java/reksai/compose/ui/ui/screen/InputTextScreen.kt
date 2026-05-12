@@ -163,6 +163,16 @@ fun InputTextScreen(
                     .fillMaxWidth()
             )
 
+            MyInputText(
+                state = state,
+                placeholder = "height",
+                inputTransformation = ChinaPhoneNumberInputTransformation(),
+                outputTransformation = ChinaPhoneNumberOutputTransformation(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+            )
+
             Spacer(modifier = Modifier.height(100.dp))
 
         }
