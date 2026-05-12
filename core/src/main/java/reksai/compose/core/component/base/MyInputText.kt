@@ -106,7 +106,7 @@ fun MyInputText(
     contentPadding: PaddingValues = PaddingValues(horizontal = 8.dp, vertical = 5.dp),
 ) {
     var isFocused by remember { mutableStateOf(false) }
-    Column {
+    Column(modifier = modifier) {
         // 密码
         if (type == MyInputTextType.Password) {
             OutlinedSecureTextField(
@@ -156,7 +156,7 @@ fun MyInputText(
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
                 contentPadding = contentPadding,
-                modifier = modifier
+                modifier = Modifier
                     .onFocusChanged { isFocused = it.isFocused }
                     .then(Modifier.height(36.dp))
             )
@@ -212,7 +212,7 @@ fun MyInputText(
                 onKeyboardAction = onKeyboardAction,
                 lineLimits = lineLimits,
                 contentPadding = contentPadding,
-                modifier = modifier
+                modifier = Modifier
                     .onFocusChanged { isFocused = it.isFocused }
                     .then(Modifier.height(36.dp))
             )
