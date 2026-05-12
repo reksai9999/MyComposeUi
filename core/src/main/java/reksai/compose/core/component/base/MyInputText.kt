@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -106,7 +107,10 @@ fun MyInputText(
     contentPadding: PaddingValues = PaddingValues(horizontal = 8.dp, vertical = 5.dp),
 ) {
     var isFocused by remember { mutableStateOf(false) }
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .then(Modifier.height(36.dp))
+    ) {
         // 密码
         if (type == MyInputTextType.Password) {
             OutlinedSecureTextField(
@@ -157,8 +161,9 @@ fun MyInputText(
                 onKeyboardAction = onKeyboardAction,
                 contentPadding = contentPadding,
                 modifier = Modifier
+                    .fillMaxSize()
                     .onFocusChanged { isFocused = it.isFocused }
-                    .then(Modifier.height(36.dp))
+
             )
         }
         // 普通文本
@@ -213,8 +218,8 @@ fun MyInputText(
                 lineLimits = lineLimits,
                 contentPadding = contentPadding,
                 modifier = Modifier
+                    .fillMaxSize()
                     .onFocusChanged { isFocused = it.isFocused }
-                    .then(Modifier.height(36.dp))
             )
         }
         supportingText?.let {
