@@ -1,22 +1,22 @@
 package reksai.compose.core.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
+import reksai.compose.core.config.MyGlobalConfig
 
-private val DarkColorScheme = BaseColors()
+private val DarkColorScheme = MyGlobalConfig.getBaseColor()
 
-private val LightColorScheme = BaseColors()
+private val LightColorScheme = MyGlobalConfig.getBaseColor()
 val LocalColors = staticCompositionLocalOf {
     LightColorScheme
 }
 val LocalTypography = staticCompositionLocalOf {
-    Typography()
+    MyGlobalConfig.getBaseTypography()
 }
 val LocalShapes = staticCompositionLocalOf {
-    BaseShapes()
+    MyGlobalConfig.getBaseShapes()
 }
 @Composable
 fun MyTheme(
@@ -29,8 +29,8 @@ fun MyTheme(
     }
     CompositionLocalProvider(
         LocalColors provides colorScheme,
-        LocalTypography provides Typography(),
-        LocalShapes provides BaseShapes(),
+        LocalTypography provides MyGlobalConfig.getBaseTypography(),
+        LocalShapes provides MyGlobalConfig.getBaseShapes(),
         content = content
     )
 }

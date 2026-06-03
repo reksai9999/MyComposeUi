@@ -1,11 +1,14 @@
 package reksai.compose.core.config
 
+import androidx.compose.material3.Typography
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import reksai.compose.core.interfaces.MyHandleInterface
+import reksai.compose.core.theme.BaseColors
+import reksai.compose.core.theme.BaseShapes
 
 object MyGlobalConfig {
     private var _appHandle: MyHandleInterface? = null
@@ -37,6 +40,18 @@ object MyGlobalConfig {
      */
     fun getFileProvider(): String {
         return _appHandle?.getFileProvider() ?: ""
+    }
+
+    fun getBaseColor(): BaseColors {
+        return _appHandle?.getBaseColor() ?: BaseColors()
+    }
+
+    fun getBaseShapes(): BaseShapes {
+        return _appHandle?.getBaseShapes() ?: BaseShapes()
+    }
+
+    fun getBaseTypography(): Typography {
+        return _appHandle?.getBaseTypography() ?: Typography()
     }
 
     /**

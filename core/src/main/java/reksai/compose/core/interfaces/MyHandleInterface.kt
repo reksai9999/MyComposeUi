@@ -1,5 +1,9 @@
 package reksai.compose.core.interfaces
 
+import androidx.compose.material3.Typography
+import reksai.compose.core.theme.BaseColors
+import reksai.compose.core.theme.BaseShapes
+
 interface MyHandleInterface {
     /**
      * 顶部栏返回按钮的返回事件
@@ -17,6 +21,10 @@ interface MyHandleInterface {
      * 获取FileProvider
      */
     fun getFileProvider(): String
+
+    fun getBaseColor(): BaseColors
+    fun getBaseShapes(): BaseShapes
+    fun getBaseTypography(): Typography
 
 //    /**
 //     * 发送SnackBar消息
