@@ -188,6 +188,9 @@ private fun MyTitleBarPreview() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        MyTopBar(title = "标题标题标题标题标题")
+        MyTopBar(
+            title = "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
+            titlePadding = PaddingValues(horizontal = 40.dp, vertical = 10.dp)
+        )
     }
 }
