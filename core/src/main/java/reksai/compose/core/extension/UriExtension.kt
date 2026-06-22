@@ -51,9 +51,36 @@ fun Uri.toBase64(
     quality: Int = 70,
     format: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
 ): String? {
+    return toImageBase64(
+        context = context,
+        quality = quality,
+        format = format
+    )
+}
+
+fun Uri.toImageBase64(
+    context: Context,
+    quality: Int = 70,
+    format: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
+): String? {
     val bitmap = this.toBitmap(context) ?: return null
     return bitmap.toBase64(
         quality = quality,
         format = format
     )
+}
+
+fun Uri.toFileBase64(
+    context: Context,
+    mimeType: String = "image/png"
+): String? {
+    return try {
+        val inputStream = context.contentResolver.openInputStream(this) ?: return null
+        val bytes = inputStream.readBytes()
+        val base64 = android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP)
+        "data:${mimeType};base64," + base64
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
 }
