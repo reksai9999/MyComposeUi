@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import androidx.exifinterface.media.ExifInterface
 
 fun Uri.toBitmap(context: Context): Bitmap? {
@@ -55,6 +56,7 @@ fun Uri.toBase64(
     return toImageBase64(
         context = context,
         quality = quality,
+        is1080p = is1080p,
         format = format
     )
 }
@@ -66,11 +68,26 @@ fun Uri.toImageBase64(
     format: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
 ): String? {
     val bitmap = this.toBitmap(context) ?: return null
-    return bitmap.toBase64(
-        quality = quality,
-        is1080p = is1080p,
-        format = format
-    )
+    val bitmapForCompress = if (format == Bitmap.CompressFormat.JPEG) {
+        bitmap.clearGainmapForJpeg()
+    } else {
+        bitmap
+    }
+
+    return try {
+        bitmapForCompress.toBase64(
+            quality = quality,
+            is1080p = is1080p,
+            format = format
+        )
+    } finally {
+        if (bitmapForCompress != bitmap && !bitmapForCompress.isRecycled) {
+            bitmapForCompress.recycle()
+        }
+        if (!bitmap.isRecycled) {
+            bitmap.recycle()
+        }
+    }
 }
 
 fun Uri.toFileBase64(
@@ -85,5 +102,18 @@ fun Uri.toFileBase64(
     } catch (e: Exception) {
         e.printStackTrace()
         null
+    }
+}
+
+private fun Bitmap.clearGainmapForJpeg(): Bitmap {
+    clearGainmapIfNeeded()
+    val jpegBitmap = copy(Bitmap.Config.ARGB_8888, false) ?: return this
+    jpegBitmap.clearGainmapIfNeeded()
+    return jpegBitmap
+}
+
+private fun Bitmap.clearGainmapIfNeeded() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && hasGainmap()) {
+        setGainmap(null)
     }
 }
