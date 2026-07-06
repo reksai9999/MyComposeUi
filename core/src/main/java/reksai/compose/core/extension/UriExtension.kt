@@ -49,6 +49,7 @@ fun Uri.toBitmap(context: Context): Bitmap? {
 fun Uri.toBase64(
     context: Context,
     quality: Int = 70,
+    is1080p: Boolean = false,
     format: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
 ): String? {
     return toImageBase64(
@@ -61,11 +62,13 @@ fun Uri.toBase64(
 fun Uri.toImageBase64(
     context: Context,
     quality: Int = 70,
+    is1080p: Boolean = false,
     format: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
 ): String? {
     val bitmap = this.toBitmap(context) ?: return null
     return bitmap.toBase64(
         quality = quality,
+        is1080p = is1080p,
         format = format
     )
 }
