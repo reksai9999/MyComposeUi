@@ -124,7 +124,10 @@ fun DropdownScreen(
                             .border(1.dp, LocalColors.current.gray, LocalShapes.current.small)
                             .padding(10.dp)
                     ) {
-                        Text(text = selectedItem ?: "请选择", color = if (isExpanded) LocalColors.current.blue else LocalColors.current.black)
+                        Text(
+                            text = selectedItem ?: "请选择",
+                            color = if (isExpanded) LocalColors.current.blue else LocalColors.current.black
+                        )
                     }
                 },
                 itemContent = { item, isSelected ->
