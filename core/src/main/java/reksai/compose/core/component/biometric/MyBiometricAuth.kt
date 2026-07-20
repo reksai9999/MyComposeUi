@@ -1,6 +1,8 @@
 package reksai.compose.core.component.biometric
 
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -14,6 +16,11 @@ enum class MyBiometricAvailability {
     Unsupported,
 }
 
+enum class MyBiometricType {
+    Fingerprint,
+    Face,
+}
+
 /**
  * 使用系统 BiometricPrompt 完成指纹或人脸认证。
  *
@@ -22,6 +29,18 @@ enum class MyBiometricAvailability {
 object MyBiometricAuth {
 
     private const val authenticators = BiometricManager.Authenticators.BIOMETRIC_WEAK
+    private const val featureFace = "android.hardware.biometrics.face"
+
+    fun isHardwareSupported(context: Context, type: MyBiometricType): Boolean {
+        return when (type) {
+            MyBiometricType.Fingerprint -> context.packageManager.hasSystemFeature(
+                PackageManager.FEATURE_FINGERPRINT,
+            )
+
+            MyBiometricType.Face -> Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+                    context.packageManager.hasSystemFeature(featureFace)
+        }
+    }
 
     fun availability(context: Context): MyBiometricAvailability {
         return when (BiometricManager.from(context).canAuthenticate(authenticators)) {

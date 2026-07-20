@@ -9,7 +9,7 @@ plugins {
 android {
     namespace = "reksai.compose.core"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     publishing {
