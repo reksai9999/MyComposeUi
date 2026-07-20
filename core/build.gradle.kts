@@ -85,6 +85,9 @@ dependencies {
     //权限
     implementation(libs.accompanist.permissions)
 
+    // 指纹 / 人脸识别
+    api(libs.androidx.biometric)
+
     //图片选择器 https://github.com/leavesCZY/Matisse
     api(libs.leavesczy.matisse)
 

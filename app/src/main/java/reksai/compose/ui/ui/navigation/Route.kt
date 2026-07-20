@@ -105,3 +105,9 @@ data object RouteInputTextValue : NavKey
  */
 @Serializable
 data object RouteSuperText : NavKey
+
+/**
+ * 指纹 / 人脸识别模拟支付
+ */
+@Serializable
+data object RouteBiometricPayment : NavKey

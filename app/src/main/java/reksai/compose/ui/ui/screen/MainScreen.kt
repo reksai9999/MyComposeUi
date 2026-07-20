@@ -22,6 +22,7 @@ import reksai.compose.core.theme.LocalTypography
 import reksai.compose.ui.ui.navigation.MyRoute
 import reksai.compose.ui.ui.navigation.RouteAlert
 import reksai.compose.ui.ui.navigation.RouteBadge
+import reksai.compose.ui.ui.navigation.RouteBiometricPayment
 import reksai.compose.ui.ui.navigation.RouteCheckBox
 import reksai.compose.ui.ui.navigation.RouteColorBox
 import reksai.compose.ui.ui.navigation.RouteColorText
@@ -118,6 +119,10 @@ fun MainScreen(
 
             TitleDesc("Badge Box") {
                 MyRoute.add(RouteBadge)
+            }
+
+            TitleDesc("Biometric Payment") {
+                MyRoute.add(RouteBiometricPayment)
             }
 
             Spacer(modifier = Modifier.height(200.dp))

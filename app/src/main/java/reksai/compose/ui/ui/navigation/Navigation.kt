@@ -27,6 +27,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import reksai.compose.ui.ui.screen.AlertScreen
 import reksai.compose.ui.ui.screen.BadgeScreenVM
+import reksai.compose.ui.ui.screen.BiometricPaymentScreen
 import reksai.compose.ui.ui.screen.CheckBoxScreen
 import reksai.compose.ui.ui.screen.ColorBoxScreenVM
 import reksai.compose.ui.ui.screen.ColorTextScreenVM
@@ -68,6 +69,7 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteExtension>(metadata = NavigationLevel.Level2) { ExtensionScreenVM() }
     entry<RouteInputTextValue>(metadata = NavigationLevel.Level2) { InputTextValueScreen() }
     entry<RouteSuperText>(metadata = NavigationLevel.Level2) { SuperTextScreenVM() }
+    entry<RouteBiometricPayment>(metadata = NavigationLevel.Level2) { BiometricPaymentScreen() }
 
 }
 
