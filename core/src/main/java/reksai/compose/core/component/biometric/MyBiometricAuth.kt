@@ -9,10 +9,29 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 
 enum class MyBiometricAvailability {
+    /**
+     * 设备支持生物识别，可以开始支付
+     */
     Available,
+
+    /**
+     * 设备没有指纹或人脸识别硬件
+     */
     NoHardware,
+
+    /**
+     * 生物识别暂时不可用
+     */
     HardwareUnavailable,
+
+    /**
+     * 请先在系统设置中录入指纹或人脸
+     */
     NoneEnrolled,
+
+    /**
+     * 当前设备不支持此认证方式
+     */
     Unsupported,
 }
 

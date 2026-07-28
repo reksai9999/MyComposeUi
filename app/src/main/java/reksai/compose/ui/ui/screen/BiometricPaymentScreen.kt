@@ -75,6 +75,7 @@ fun BiometricPaymentScreen(modifier: Modifier = Modifier) {
                 activity = activity,
                 title = "确认支付 ¥29.90",
                 subtitle = "请使用${enabledTypes}完成认证",
+                negativeButtonText = "exit",
                 onSuccess = {
                     paid = true
                     resultText = "支付成功（模拟）"
