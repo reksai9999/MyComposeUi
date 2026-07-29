@@ -19,6 +19,7 @@ import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.base.MyInputText
 import reksai.compose.core.component.button.MyFillButton
 import reksai.compose.core.extension.copyToClipboard
+import reksai.compose.core.extension.toDateTimeString
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
 import reksai.compose.ui.utils.tip
@@ -72,6 +73,20 @@ fun ExtensionScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(80.dp)
+            )
+
+            val timeLong = "1785769199".toLongOrNull()
+            Text(
+                text = "时间戳转换",
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.black200,
+                modifier = Modifier
+            )
+            Text(
+                text = "${timeLong.toString()} = ${timeLong?.toDateTimeString()}",
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.black200,
+                modifier = Modifier
             )
         }
     }
