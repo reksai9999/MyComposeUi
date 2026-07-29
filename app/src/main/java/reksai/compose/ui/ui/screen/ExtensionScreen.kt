@@ -75,7 +75,7 @@ fun ExtensionScreen(
                     .height(80.dp)
             )
 
-            val timeLong = "1785769199".toLongOrNull()
+            val timeLong = "1785769199".toLong()
             Text(
                 text = "时间戳转换",
                 style = LocalTypography.current.bodySmall,
@@ -83,7 +83,7 @@ fun ExtensionScreen(
                 modifier = Modifier
             )
             Text(
-                text = "${timeLong.toString()} = ${timeLong?.toDateTimeString()}",
+                text = "${timeLong.toString()} = ${(timeLong * 1000).toDateTimeString()}",
                 style = LocalTypography.current.bodySmall,
                 color = LocalColors.current.black200,
                 modifier = Modifier
