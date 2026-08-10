@@ -50,7 +50,7 @@ fun <T> MyDropdown(
     itemContent: @Composable (item: T, isSelected: Boolean) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedItem by remember { mutableStateOf(defaultValue) }
+    var selectedItem by remember(defaultValue) { mutableStateOf(defaultValue) }
     val density = LocalDensity.current
 
     // 获取导航栏高度像素
