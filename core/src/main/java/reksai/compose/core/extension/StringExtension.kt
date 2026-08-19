@@ -215,6 +215,13 @@ fun String.toIntOrZero(): Int {
 }
 
 /**
+ * 字符串转 Long, 转换失败返回 0
+ */
+fun String.toLongOrZero(): Long {
+    return this.toLongOrNull() ?: 0L
+}
+
+/**
  * 字符串转 Double, 转换失败返回 0.0
  */
 fun String.toDoubleOrZero(): Double {
