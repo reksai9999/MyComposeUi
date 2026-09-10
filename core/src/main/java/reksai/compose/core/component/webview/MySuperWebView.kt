@@ -27,6 +27,7 @@ fun MySuperWebView(
     isClearAllCache: Boolean = false,
     isDebug: Boolean = false,
     onCreated: (WebView) -> Unit = {},
+    onPageCommitVisible: (WebView?, String?) -> Unit = { _, _ -> },
     onPageFinished: (WebView?, String?) -> Unit = { _, _ -> },
     onShouldOverrideUrlLoading: (WebView?, WebResourceRequest?) -> Boolean = { _, _ -> false },
     onError: (WebView?, WebResourceRequest?, WebResourceError?) -> Unit = { _, _, _ -> },
@@ -41,6 +42,7 @@ fun MySuperWebView(
     val viewModel: MySuperWebViewModel = viewModel(key = contentKey)
 
     val currentOnCreated by rememberUpdatedState(onCreated)
+    val currentOnPageCommitVisible by rememberUpdatedState(onPageCommitVisible)
     val currentOnPageFinished by rememberUpdatedState(onPageFinished)
     val currentOnShouldOverrideUrlLoading by rememberUpdatedState(onShouldOverrideUrlLoading)
     val currentOnError by rememberUpdatedState(onError)
@@ -59,6 +61,11 @@ fun MySuperWebView(
                     request: WebResourceRequest?
                 ): Boolean {
                     return currentOnShouldOverrideUrlLoading(view, request)
+                }
+
+                override fun onPageCommitVisible(view: WebView?, url: String?) {
+                    super.onPageCommitVisible(view, url)
+                    currentOnPageCommitVisible(view, url)
                 }
 
                 override fun onPageFinished(view: WebView?, url: String?) {
