@@ -74,6 +74,7 @@ fun <T> MyTabsScrollable(
         },
     edgePadding: Dp = 0.dp,
     scrollState: ScrollState = rememberScrollState(),
+    minTabWidth: Dp = TabRowDefaults.ScrollableTabRowMinTabWidth,
     content: @Composable (index: Int, item: T, isSelected: Boolean) -> Unit,
 ) {
     Box(modifier = modifier) {
@@ -85,6 +86,7 @@ fun <T> MyTabsScrollable(
             divider = divider,
             edgePadding = edgePadding,
             scrollState = scrollState,
+            minTabWidth = minTabWidth,
         ) {
             tabs.forEachIndexed { index, item ->
                 content(index, item, index == selectedTabIndex)
@@ -118,14 +120,15 @@ private fun MyhTabsPreview() {
         }
 
         MyTabsScrollable(
-            tabs = listOf("滚动标签一", "滚动标签二", "滚动标签三", "滚动标签四", "滚动标签五", "滚动标签六", "滚动标签七", "滚动标签八"),
-            selectedTabIndex = 4,
+            tabs = listOf("一", "标签二", "滚动标签三", "滚动标签四", "滚动标签五", "滚动标签六", "滚动标签七", "滚动标签八"),
+            selectedTabIndex = 1,
+            minTabWidth = 10.dp,
         ) { index, title, isSelected ->
             Text(
                 text = title,
                 color = if (isSelected) Color.Red else Color.Black,
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .padding(horizontal = 6.dp, vertical = 8.dp)
             )
         }
     }
