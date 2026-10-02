@@ -9,12 +9,32 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write        # 允许写仓库（打 tag、建 release）
+      packages: write        # 允许发布到 GitHub Packages
+
+    concurrency:
+      group: github-packages-release
+      cancel-in-progress: false
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0     # 必须拉全历史，才能读到全部 tag
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install compile SDK
+        run: sdkmanager "platforms;android-37.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       # 1. 计算下一个版本号
       - name: Calc next version
@@ -34,6 +54,13 @@ jobs:
           next="v${major}.${minor}.${patch}"
           echo "next=$next" >> $GITHUB_OUTPUT
           echo "Next version will be: $next"
+
+      # 使用同一版本发布包；构建和上传成功后再创建 tag / Release。
+      - name: Publish core to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.vers.outputs.next }}
+        run: bash ./gradlew :core:publishReleasePublicationToGitHubPackagesRepository -PpublishVersion="${RELEASE_TAG#v}" --no-daemon
 
       # 2. 打 tag（轻量 tag 即可）
       - name: Create tag

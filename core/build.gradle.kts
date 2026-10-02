@@ -6,6 +6,9 @@ plugins {
     id("maven-publish")
 }
 
+group = "io.github.reksai9999.mycomposeui"
+version = providers.gradleProperty("publishVersion").getOrElse("0.0.1")
+
 android {
     namespace = "reksai.compose.core"
     compileSdk {
@@ -43,6 +46,21 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/reksai9999/MyComposeUi")
+            credentials {
+                username = providers.gradleProperty("gpr.user")
+                    .orElse(providers.environmentVariable("GITHUB_ACTOR")).orNull
+                password = providers.gradleProperty("gpr.key")
+                    .orElse(providers.environmentVariable("GITHUB_TOKEN")).orNull
+            }
+        }
     }
 }
 
