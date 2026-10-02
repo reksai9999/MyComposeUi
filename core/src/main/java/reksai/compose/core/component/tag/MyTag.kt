@@ -2,25 +2,37 @@ package reksai.compose.core.component.tag
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import reksai.compose.core.R
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
 
+/**
+ * [onClick] 响应标签点击；仅在提供 [onClose] 时显示关闭图标。
+ * [closeIconColor] 默认为文字颜色，关闭后的状态由调用者管理。
+ */
 @Composable
 fun MyTag(
     modifier: Modifier = Modifier,
@@ -31,23 +43,45 @@ fun MyTag(
     background: Color = LocalColors.current.blue100.copy(alpha = 0.2f),
     border: Color = LocalColors.current.blue100,
     shape: Shape = LocalShapes.current.circle,
+    onClick: (() -> Unit)? = null,
+    onClose: (() -> Unit)? = null,
+    closeIconColor: Color = textColor,
+    closeModifier: Modifier = Modifier,
     content: @Composable (() -> Unit)? = null
 ) {
 
-    Box(
+    Row(
         modifier = modifier
             .background(color = background, shape = shape)
             .border(width = 1.dp, color = border, shape = shape)
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clip(shape)
+            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        if (content != null) {
-            content()
-        } else {
-            Text(
-                text = text,
-                style = textStyle,
-                color = textColor,
-                modifier = textModifier
+        Box {
+            if (content != null) {
+                content()
+            } else {
+                Text(
+                    text = text,
+                    style = textStyle,
+                    color = textColor,
+                    modifier = textModifier
+                )
+            }
+        }
+        if (onClose != null) {
+            Icon(
+                painter = painterResource(R.drawable.icon_close),
+                contentDescription = "关闭",
+                tint = closeIconColor,
+                modifier = Modifier
+                    .padding(2.dp)
+                    .size(14.dp)
+                    .then(closeModifier)
+                    .clickable(onClick = onClose)
             )
         }
     }
@@ -70,7 +104,10 @@ private fun Preview() {
             text = "Ocean Blue",
             textColor = Color(0xFF1565C0),
             background = Color(0xFFE3F2FD),
-            border = Color(0xFF90CAF9)
+            border = Color(0xFF90CAF9),
+            onClick = {},
+            onClose = {},
+            closeIconColor = Color(0xFF1565C0)
         )
         MyTag(
             text = "Mint Green",
