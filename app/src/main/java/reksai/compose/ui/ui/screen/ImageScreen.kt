@@ -1,25 +1,33 @@
 package reksai.compose.ui.ui.screen
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.component.bar.MyTopBar
+import reksai.compose.core.component.button.MyFillButton
 import reksai.compose.core.component.button.MyOutlineButton
 import reksai.compose.core.component.image.MyImage
 import reksai.compose.core.component.image.MyImagePreview
+import reksai.compose.core.component.selector.rememberMyImageSelector
 import reksai.compose.core.config.MyGlobalConfig
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
@@ -48,6 +56,7 @@ fun ImageScreen(
                 .weight(1f)
                 .background(LocalColors.current.background)
                 .padding(16.dp)
+                .verticalScroll(rememberScrollState())
         ) {
 
             Text(
@@ -66,6 +75,17 @@ fun ImageScreen(
             ) {
                 imgId++
             }
+
+            Text(
+                text = "gif图片",
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.black200,
+                modifier = Modifier
+            )
+            MyImage(
+                image = "https://eoullim.co.kr/images/emoji/1.gif",
+                modifier = Modifier.size(120.dp, 150.dp)
+            )
 
             Text(
                 text = "图片预览",
@@ -89,6 +109,32 @@ fun ImageScreen(
                 showClose = false,
                 modifier = Modifier.size(120.dp, 150.dp)
             )
+
+            Text(
+                text = "选择图片",
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.black200,
+                modifier = Modifier
+            )
+            val imageUri = remember { mutableStateOf<Uri?>(null) }
+            val selector = rememberMyImageSelector {
+                it.firstOrNull()?.let { res ->
+                    imageUri.value = res.uri
+                }
+            }
+
+            MyFillButton("选择图片") {
+                selector.launch()
+            }
+
+            if (imageUri.value != null) {
+                MyImage(
+                    image = imageUri.value!!,
+                    modifier = Modifier.size(120.dp, 150.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(200.dp))
 
 
         }

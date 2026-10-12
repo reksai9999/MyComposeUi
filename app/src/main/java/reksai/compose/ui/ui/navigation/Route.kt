@@ -49,6 +49,10 @@ data object RouteSelector : NavKey
 @Serializable
 data object RoutePager : NavKey
 
+/** Paging 分页组件示例路由。 */
+@Serializable
+data object RoutePaging : NavKey
+
 /**
  * RouteTabs 路由
  */
@@ -56,11 +60,58 @@ data object RoutePager : NavKey
 data object RouteTabs : NavKey
 
 /**
+ * SuperWebView 路由
+ */
+@Serializable
+data object RouteSuperWebView : NavKey
+
+/**
  * RouteColorText 路由
  */
 @Serializable
 data object RouteColorText : NavKey
 
+/**
+ * RouteMenu 路由
+ */
+@Serializable
+data object RouteMenu : NavKey
 
+/**
+ * RouteColorBox 路由
+ */
+@Serializable
+data object RouteColorBox : NavKey
 
+/**
+ * RouteBadge 路由
+ */
+@Serializable
+data object RouteBadge : NavKey
 
+/**
+ * RouteExtension 路由
+ */
+@Serializable
+data object RouteExtension : NavKey
+
+/**
+ * RouteDropdown 路由
+ */
+@Serializable
+data object RouteDropdown : NavKey
+
+@Serializable
+data object RouteInputTextValue : NavKey
+
+/**
+ * RouteSuperText 路由
+ */
+@Serializable
+data object RouteSuperText : NavKey
+
+/**
+ * 指纹 / 人脸识别模拟支付
+ */
+@Serializable
+data object RouteBiometricPayment : NavKey

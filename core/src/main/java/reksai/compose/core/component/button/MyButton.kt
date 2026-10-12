@@ -36,7 +36,7 @@ fun MyButton(
     textStyle: TextStyle = BaseTypography.current.labelMedium,
     buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     shape:Shape = BaseShapes.current.circle,
-    onClick: () -> Unit = {},
+    onClick: (() -> Unit)? = null
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -44,7 +44,7 @@ fun MyButton(
             .clip(shape)
             .background(backgroundColor, shape = shape)
             .border(1.dp, borderColor, shape = shape)
-            .clickableNormal { onClick() }
+            .then(if (onClick != null) Modifier.clickableNormal { onClick() } else Modifier)
             .padding(buttonPadding)
     ) {
         Text(

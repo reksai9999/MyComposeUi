@@ -29,6 +29,22 @@ fun MySnackBar(
     modifier: Modifier = Modifier,
     closeTime: Long = 2000,
     hostState: SnackbarHostState = remember { SnackbarHostState() },
+    content: @Composable (SnackbarData) -> Unit = { data ->
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+                .clip(LocalShapes.current.medium)
+                .background(LocalColors.current.blackOpacity80)
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            Text(
+                text = data.visuals.message,
+                style = LocalTypography.current.bodySmall,
+                color = LocalColors.current.white200,
+                modifier = Modifier
+            )
+        }
+    }
 ) {
     LaunchedEffect(Unit) {
         MyGlobalConfig.snackBarMessageFlow.collect { message ->
@@ -52,19 +68,6 @@ fun MySnackBar(
         hostState = hostState,
         modifier  = modifier
     ) { data: SnackbarData ->
-        Box (
-            modifier = Modifier
-                .padding(16.dp)
-                .clip(LocalShapes.current.tiny)
-                .background(LocalColors.current.blackOpacity80)
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            Text(
-                text = data.visuals.message,
-                style = LocalTypography.current.bodySmall,
-                color = LocalColors.current.white200,
-                modifier = Modifier
-            )
-        }
+        content(data)
     }
 }

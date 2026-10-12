@@ -36,8 +36,8 @@ fun MyImagePreview(
 
     Box(
         modifier = Modifier
-            .clip(shape)
             .then(modifier)
+            .clip(shape)
     ) {
         MyImage(
             image = url,

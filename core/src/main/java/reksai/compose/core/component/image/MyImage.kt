@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
+import coil3.gif.AnimatedImageDecoder
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.zj.shimmer.shimmer
@@ -37,6 +38,7 @@ fun MyImage(
         ImageRequest.Builder(context)
             .data(image)
             .crossfade(true)
+            .decoderFactory(AnimatedImageDecoder.Factory())
             .build()
     }
 

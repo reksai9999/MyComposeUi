@@ -65,7 +65,7 @@ data class BaseColors(
 
     //红色
     val red50: Color = Color(0xFFFFECEC),
-    val red200: Color = Color(0xFFFF4000),
+    val red200: Color = Color(0xFFBE1700),
     val red300: Color = Color(0xFFFF344B),
     val red310: Color = Color(0xFFFB6405),
     val red500: Color = Color(0xFFBA0219),
@@ -109,7 +109,7 @@ data class BaseColors(
     val purple400: Color = Color(0xFF7A48CE),
 
 
-) {
+    ) {
     companion object {
         val Color = BaseColors()
         val current = Color

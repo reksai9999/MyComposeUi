@@ -2,8 +2,10 @@ package reksai.compose.ui.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -19,13 +21,23 @@ import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
 import reksai.compose.ui.ui.navigation.MyRoute
 import reksai.compose.ui.ui.navigation.RouteAlert
+import reksai.compose.ui.ui.navigation.RouteBadge
+import reksai.compose.ui.ui.navigation.RouteBiometricPayment
 import reksai.compose.ui.ui.navigation.RouteCheckBox
+import reksai.compose.ui.ui.navigation.RouteColorBox
 import reksai.compose.ui.ui.navigation.RouteColorText
 import reksai.compose.ui.ui.navigation.RouteDialog
+import reksai.compose.ui.ui.navigation.RouteDropdown
+import reksai.compose.ui.ui.navigation.RouteExtension
 import reksai.compose.ui.ui.navigation.RouteImage
 import reksai.compose.ui.ui.navigation.RouteInputText
+import reksai.compose.ui.ui.navigation.RouteInputTextValue
+import reksai.compose.ui.ui.navigation.RouteMenu
 import reksai.compose.ui.ui.navigation.RoutePager
+import reksai.compose.ui.ui.navigation.RoutePaging
 import reksai.compose.ui.ui.navigation.RouteSelector
+import reksai.compose.ui.ui.navigation.RouteSuperText
+import reksai.compose.ui.ui.navigation.RouteSuperWebView
 import reksai.compose.ui.ui.navigation.RouteTabs
 
 @Composable
@@ -47,9 +59,14 @@ fun MainScreen(
                 .background(LocalColors.current.background)
                 .verticalScroll(rememberScrollState())
         ) {
-
+            TitleDesc("Extension") {
+                MyRoute.add(RouteExtension)
+            }
             TitleDesc("Input") {
                 MyRoute.add(RouteInputText)
+            }
+            TitleDesc("Input Value") {
+                MyRoute.add(RouteInputTextValue)
             }
             TitleDesc("CheckBox") {
                 MyRoute.add(RouteCheckBox)
@@ -73,6 +90,14 @@ fun MainScreen(
                 MyRoute.add(RoutePager)
             }
 
+            TitleDesc("Paging") {
+                MyRoute.add(RoutePaging)
+            }
+
+            TitleDesc("Super WebView") {
+                MyRoute.add(RouteSuperWebView)
+            }
+
             TitleDesc("Tabs") {
                 MyRoute.add(RouteTabs)
             }
@@ -80,6 +105,32 @@ fun MainScreen(
             TitleDesc("Color Text") {
                 MyRoute.add(RouteColorText)
             }
+
+            TitleDesc("Super Text") {
+                MyRoute.add(RouteSuperText)
+            }
+
+            TitleDesc("Menu") {
+                MyRoute.add(RouteMenu)
+            }
+
+            TitleDesc("Dropdown") {
+                MyRoute.add(RouteDropdown)
+            }
+
+            TitleDesc("Color Box") {
+                MyRoute.add(RouteColorBox)
+            }
+
+            TitleDesc("Badge Box") {
+                MyRoute.add(RouteBadge)
+            }
+
+            TitleDesc("Biometric Payment") {
+                MyRoute.add(RouteBiometricPayment)
+            }
+
+            Spacer(modifier = Modifier.height(200.dp))
 
         }
     }

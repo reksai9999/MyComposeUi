@@ -109,8 +109,8 @@ fun String.toProductHtml(): String {
                         imgs[i].onclick = function () {
                             //得到当前点击的img的src
                             var src = this.getAttribute('src');
-                            //JsToAndroidProduct.onImageClick(src);
-                            JsToAndroidProduct.onImageListClick(src, JSON.stringify(imgList));
+                            //JsToAndroidImagePreview.onImageClick(src);
+                            JsToAndroidImagePreview.onImageListClick(src, JSON.stringify(imgList));
                         }
                     }
                 </script>
@@ -148,8 +148,8 @@ fun String.toNoticeHtml(): String {
                         imgs[i].onclick = function () {
                             //得到当前点击的img的src
                             var src = this.getAttribute('src');
-                            //JsToAndroidProduct.onImageClick(src);
-                            JsToAndroidProduct.onImageListClick(src, JSON.stringify(imgList));
+                            //JsToAndroidImagePreview.onImageClick(src);
+                            JsToAndroidImagePreview.onImageListClick(src, JSON.stringify(imgList));
                         }
                     }
                 </script>
@@ -212,6 +212,13 @@ fun String.toLocalDate(fmt: String = "yyyy-MM-dd"): LocalDate? {
  */
 fun String.toIntOrZero(): Int {
     return this.toIntOrNull() ?: 0
+}
+
+/**
+ * 字符串转 Long, 转换失败返回 0
+ */
+fun String.toLongOrZero(): Long {
+    return this.toLongOrNull() ?: 0L
 }
 
 /**

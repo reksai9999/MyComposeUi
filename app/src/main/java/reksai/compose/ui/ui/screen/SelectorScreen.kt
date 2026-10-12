@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -47,10 +50,12 @@ fun SelectorScreen(
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
+                .navigationBarsPadding()
                 .fillMaxWidth()
                 .weight(1f)
-                .background(LocalColors.current.background)
-                .padding(16.dp)
+                .background(LocalColors.current.red)
+                .padding(horizontal = 20.dp)
+                .verticalScroll(rememberScrollState())
         ) {
             Text(
                 text = "日期选择: $startDate - $endDate",
@@ -98,8 +103,6 @@ fun SelectorScreen(
             ) {
                 takeSelector.launch()
             }
-
-
         }
     }
 

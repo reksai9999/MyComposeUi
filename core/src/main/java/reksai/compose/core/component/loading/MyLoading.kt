@@ -1,6 +1,7 @@
 package reksai.compose.core.component.loading
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.infiniteRepeatable
@@ -11,7 +12,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -36,11 +36,8 @@ import reksai.compose.core.extension.clickableNormalNoEffect
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
-import kotlin.collections.map
 import kotlin.math.cos
 import kotlin.math.sin
-import kotlin.ranges.until
-import kotlin.text.isNotEmpty
 
 @Composable
 fun MyLoading(
@@ -52,6 +49,17 @@ fun MyLoading(
     loadingColor: Color = LocalColors.current.white200,
     textColor: Color = LocalColors.current.white200,
     textStyle: TextStyle = LocalTypography.current.titleSmall,
+    loadingContent: @Composable AnimatedVisibilityScope.() -> Unit = {
+        LoadingContentNormal(
+            modifier = Modifier.fillMaxSize(),
+            text = text,
+            backgroundColor = backgroundColor,
+            loadingBackgroundColor = loadingBackgroundColor,
+            loadingColor = loadingColor,
+            textColor = textColor,
+            textStyle = textStyle
+        )
+    },
     content: @Composable () -> Unit,
 ) {
     Box(
@@ -66,15 +74,7 @@ fun MyLoading(
             enter = fadeIn(animationSpec = tween(200)),
             exit = fadeOut(animationSpec = tween(500))
         ) {
-            LoadingContentNormal(
-                modifier = Modifier.fillMaxSize(),
-                text = text,
-                backgroundColor = backgroundColor,
-                loadingBackgroundColor = loadingBackgroundColor,
-                loadingColor = loadingColor,
-                textColor = textColor,
-                textStyle = textStyle
-            )
+            loadingContent()
         }
     }
 }

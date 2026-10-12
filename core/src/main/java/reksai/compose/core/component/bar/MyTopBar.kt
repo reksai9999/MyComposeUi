@@ -33,14 +33,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.launch
 import reksai.compose.core.component.box.MyColorBox
+import reksai.compose.core.component.box.MyColorBoxType
 import reksai.compose.core.component.icon.EnumArrowDirection
 import reksai.compose.core.component.icon.MyIconArrow
 import reksai.compose.core.config.MyGlobalConfig
 import reksai.compose.core.extension.clickableNormalNoEffect
-import reksai.compose.core.extension.rememberThrottledClick
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 import reksai.compose.core.theme.LocalTypography
+import reksai.compose.core.utils.rememberThrottledClick
 
 @Composable
 fun MyTopBar(
@@ -81,8 +82,8 @@ fun MyTopBar(
 
     MyColorBox(
         contentAlignment = Alignment.BottomCenter,
-        startColor = startColor,
-        endColor = endColor,
+        colors = listOf(startColor, endColor),
+        type = MyColorBoxType.Horizontal,
         modifier = modifier.zIndex(Float.MAX_VALUE)
     ) {
         Box(
@@ -187,6 +188,9 @@ private fun MyTitleBarPreview() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        MyTopBar(title = "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题")
+        MyTopBar(
+            title = "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
+            titlePadding = PaddingValues(horizontal = 40.dp, vertical = 10.dp)
+        )
     }
 }

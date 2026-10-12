@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
@@ -24,6 +23,7 @@ import kotlin.math.roundToInt
 fun MySwitch(
     modifier: Modifier = Modifier,
     checked: Boolean = false,
+    enabled: Boolean = true,
     onCheckedChange: (Boolean) -> Unit = { },
     thumbColor: Color = LocalColors.current.white200,
     trackColor: Color = LocalColors.current.red200,
@@ -31,6 +31,7 @@ fun MySwitch(
 ) {
     Switch(
         checked = checked,
+        enabled = enabled,
         onCheckedChange = onCheckedChange,
         colors = SwitchDefaults.colors(
             checkedThumbColor = thumbColor,

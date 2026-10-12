@@ -26,15 +26,25 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import reksai.compose.ui.ui.screen.AlertScreen
+import reksai.compose.ui.ui.screen.BadgeScreenVM
+import reksai.compose.ui.ui.screen.BiometricPaymentScreen
 import reksai.compose.ui.ui.screen.CheckBoxScreen
+import reksai.compose.ui.ui.screen.ColorBoxScreenVM
 import reksai.compose.ui.ui.screen.ColorTextScreenVM
 import reksai.compose.ui.ui.screen.DialogScreen
+import reksai.compose.ui.ui.screen.DropdownScreenVM
+import reksai.compose.ui.ui.screen.ExtensionScreenVM
 import reksai.compose.ui.ui.screen.ImagePreviewScreen
 import reksai.compose.ui.ui.screen.ImageScreen
 import reksai.compose.ui.ui.screen.InputTextScreen
+import reksai.compose.ui.ui.screen.InputTextValueScreen
 import reksai.compose.ui.ui.screen.MainScreen
+import reksai.compose.ui.ui.screen.MenuScreenVM
 import reksai.compose.ui.ui.screen.PagerScreen
+import reksai.compose.ui.ui.screen.PagingScreen
 import reksai.compose.ui.ui.screen.SelectorScreen
+import reksai.compose.ui.ui.screen.SuperTextScreenVM
+import reksai.compose.ui.ui.screen.SuperWebViewScreen
 import reksai.compose.ui.ui.screen.TabsScreen
 
 val DefaultRoute = RouteMain
@@ -49,9 +59,19 @@ private val DefaultEntryProvider: (Any) -> NavEntry<Any> = entryProvider {
     entry<RouteImage>(metadata = NavigationLevel.Level2) { ImageScreen() }
     entry<RouteImagePreview>(metadata = NavigationLevel.Level2) { ImagePreviewScreen(it.url, it.urls) }
     entry<RouteSelector>(metadata = NavigationLevel.Level2) { SelectorScreen() }
+    entry<RouteSuperWebView>(metadata = NavigationLevel.Level2) { SuperWebViewScreen() }
     entry<RoutePager>(metadata = NavigationLevel.Level2) { PagerScreen() }
+    entry<RoutePaging>(metadata = NavigationLevel.Level2) { PagingScreen() }
     entry<RouteTabs>(metadata = NavigationLevel.Level2) { TabsScreen() }
     entry<RouteColorText>(metadata = NavigationLevel.Level2) { ColorTextScreenVM() }
+    entry<RouteMenu>(metadata = NavigationLevel.Level2) { MenuScreenVM() }
+    entry<RouteDropdown>(metadata = NavigationLevel.Level2) { DropdownScreenVM() }
+    entry<RouteColorBox>(metadata = NavigationLevel.Level2) { ColorBoxScreenVM() }
+    entry<RouteBadge>(metadata = NavigationLevel.Level2) { BadgeScreenVM() }
+    entry<RouteExtension>(metadata = NavigationLevel.Level2) { ExtensionScreenVM() }
+    entry<RouteInputTextValue>(metadata = NavigationLevel.Level2) { InputTextValueScreen() }
+    entry<RouteSuperText>(metadata = NavigationLevel.Level2) { SuperTextScreenVM() }
+    entry<RouteBiometricPayment>(metadata = NavigationLevel.Level2) { BiometricPaymentScreen() }
 
 }
 
@@ -72,7 +92,7 @@ fun RouteNavigation() {
         transitionSpec = { slideInHorizontally(initialOffsetX = { it }) togetherWith slideOutHorizontally(targetOffsetX = { -it }) },
         popTransitionSpec = { slideInHorizontally(initialOffsetX = { -it }) togetherWith slideOutHorizontally(targetOffsetX = { it }) },
         predictivePopTransitionSpec = { slideInHorizontally(initialOffsetX = { -it }) togetherWith slideOutHorizontally(targetOffsetX = { it }) },
-        sceneStrategy = listDetailStrategy,
+//        sceneStrategy = listDetailStrategy,
         entryProvider = DefaultEntryProvider
     )
 }

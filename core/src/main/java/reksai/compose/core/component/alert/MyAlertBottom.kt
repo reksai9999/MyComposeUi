@@ -14,6 +14,7 @@ import reksai.compose.core.theme.LocalTypography
 fun MyAlertBottom(
     show: Boolean,
     onHide: () -> Unit,
+    modifier: Modifier = Modifier,
     showCloseIcon: Boolean = false,
     shouldDismissOnBackPress: Boolean = true,
     shouldDismissOnClickOutside: Boolean = true,
@@ -21,7 +22,6 @@ fun MyAlertBottom(
     title: String = "",
     content: String = "",
 
-    modifier: Modifier = Modifier,
     titleStyle: TextStyle = LocalTypography.current.bodyMedium,
     contentStyle: TextStyle = LocalTypography.current.bodySmall,
     contentPadding: PaddingValues = PaddingValues(0.dp),
@@ -30,6 +30,9 @@ fun MyAlertBottom(
     cancelText: String = "cancel",
     onConfirm: () -> Unit = {},
     onCancel: () -> Unit = {},
+
+    showConfirmButton: Boolean = true,
+    showCancelButton: Boolean = true,
 
     titleCompose: @Composable (() -> Unit)? = null,
     contentCompose: @Composable (() -> Unit)? = null,
@@ -62,6 +65,8 @@ fun MyAlertBottom(
                 onCancel()
                 hide()
             },
+            showConfirmButton = showConfirmButton,
+            showCancelButton = showCancelButton,
             titleCompose = titleCompose,
             contentCompose = contentCompose,
             buttonCompose = buttonCompose,

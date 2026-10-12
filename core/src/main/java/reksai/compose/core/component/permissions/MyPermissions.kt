@@ -80,6 +80,9 @@ fun rememberMyPermissionsState(
  */
 @Composable
 fun rememberCameraPermissionsState(
+    alertText: String = "",
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
     onPermissionsGranted: () -> Unit,
     onPermissionsDenied: () -> Unit = {}
 ): MyPermissionsState {
@@ -88,7 +91,9 @@ fun rememberCameraPermissionsState(
     )
     return rememberMyPermissionsState(
         permissions = permissions,
-        alertText = "需要相机权限才能使用此功能，请授予相关权限。",
+        alertText = alertText,
+        confirmText = confirmText,
+        cancelText = cancelText,
         onPermissionsGranted = onPermissionsGranted,
         onPermissionsDenied = onPermissionsDenied
     )
@@ -99,6 +104,9 @@ fun rememberCameraPermissionsState(
  */
 @Composable
 fun rememberImagePermissionsState(
+    alertText: String = "",
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
     onPermissionsGranted: () -> Unit,
     onPermissionsDenied: () -> Unit = {}
 ): MyPermissionsState {
@@ -123,7 +131,9 @@ fun rememberImagePermissionsState(
 
     return rememberMyPermissionsState(
         permissions = permissions,
-        alertText = "需要图片权限才能使用此功能，请授予相关权限。",
+        alertText = alertText,
+        confirmText = confirmText,
+        cancelText = cancelText,
         onPermissionsGranted = onPermissionsGranted,
         onPermissionsDenied = onPermissionsDenied
     )
@@ -131,6 +141,9 @@ fun rememberImagePermissionsState(
 
 @Composable
 fun rememberCameraImagePermissionsState(
+    alertText: String = "",
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
     onPermissionsGranted: () -> Unit,
     onPermissionsDenied: () -> Unit = {}
 ): MyPermissionsState {
@@ -159,7 +172,9 @@ fun rememberCameraImagePermissionsState(
 
     return rememberMyPermissionsState(
         permissions = permissions,
-        alertText = "需要相机和图片权限才能使用此功能，请授予相关权限。",
+        alertText = alertText,
+        confirmText = confirmText,
+        cancelText = cancelText,
         onPermissionsGranted = onPermissionsGranted,
         onPermissionsDenied = onPermissionsDenied
     )
@@ -170,6 +185,9 @@ fun rememberCameraImagePermissionsState(
  */
 @Composable
 fun rememberNotificationPermissionsState(
+    alertText: String = "",
+    confirmText: String = "ok",
+    cancelText: String = "cancel",
     onPermissionsGranted: () -> Unit = {},
     onPermissionsDenied: () -> Unit = {}
 ): MyPermissionsState {
@@ -180,6 +198,9 @@ fun rememberNotificationPermissionsState(
     }
 
     return rememberMyPermissionsState(
+        alertText = alertText,
+        confirmText = confirmText,
+        cancelText = cancelText,
         permissions = permissions,
         onPermissionsGranted = onPermissionsGranted,
         onPermissionsDenied = onPermissionsDenied

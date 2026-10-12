@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.component.bar.MyTopBar
 import reksai.compose.core.component.base.MyInputText
+import reksai.compose.core.component.base.MyInputTextType
 import reksai.compose.core.component.icon.MyIconSearch
 import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalTypography
@@ -36,6 +37,7 @@ fun InputTextScreen(
     modifier: Modifier = Modifier,
 ) {
     val state = rememberTextFieldState()
+
     Column(
         modifier = modifier
     ) {
@@ -60,6 +62,23 @@ fun InputTextScreen(
 
             MyInputText(
                 state = state,
+                type = MyInputTextType.Password,
+                placeholder = "MyInputText placeholder",
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            MyInputText(
+                state = state,
+                placeholder = "MyInputText placeholder",
+                label = { Text("Label") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            )
+
+            MyInputText(
+                state = state,
+                type = MyInputTextType.Password,
                 placeholder = "MyInputText placeholder",
                 label = { Text("Label") },
                 modifier = Modifier
@@ -142,6 +161,16 @@ fun InputTextScreen(
                 outputTransformation = ChinaPhoneNumberOutputTransformation(),
                 modifier = Modifier
                     .fillMaxWidth()
+            )
+
+            MyInputText(
+                state = state,
+                placeholder = "height",
+                inputTransformation = ChinaPhoneNumberInputTransformation(),
+                outputTransformation = ChinaPhoneNumberOutputTransformation(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             )
 
             Spacer(modifier = Modifier.height(100.dp))
