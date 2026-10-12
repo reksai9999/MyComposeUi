@@ -77,8 +77,6 @@ fun DropdownScreen(
                 defaultValue = dropdownItems[0],
                 onItemSelected = { selectedDropdownItem = it },
                 properties = PopupProperties(clippingEnabled = false),
-                shape = LocalShapes.current.medium,
-                containerColor = LocalColors.current.background,
                 anchorContent = { selectedItem, isExpanded ->
                     Row(
                         modifier = Modifier
@@ -114,8 +112,6 @@ fun DropdownScreen(
                 defaultValue = dropdownItems[0],
                 onItemSelected = { selectedDropdownItem = it },
                 properties = PopupProperties(clippingEnabled = false),
-                shape = LocalShapes.current.medium,
-                containerColor = LocalColors.current.background,
                 anchorContent = { selectedItem, isExpanded ->
                     Box(
                         contentAlignment = Alignment.CenterStart,
@@ -162,8 +158,6 @@ fun DropdownScreen(
                     defaultValue = dropdownItems[0],
                     onItemSelected = { selectedDropdownItem = it },
                     properties = PopupProperties(clippingEnabled = false),
-                    shape = LocalShapes.current.medium,
-                    containerColor = LocalColors.current.background,
                     anchorContent = { selectedItem, isExpanded ->
                         Row(
                             modifier = Modifier
