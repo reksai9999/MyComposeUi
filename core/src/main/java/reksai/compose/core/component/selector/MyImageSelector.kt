@@ -41,9 +41,8 @@ fun rememberMyImageSelector(
     ),
     onHandlerMediaResource: (List<MediaResource>) -> Unit,
 ): MyImageSelectorState {
+    /** 将系统图片选择器返回的 Uri 转换为 Matisse 3 的媒体结果。 */
     fun mediaResource(uri: @JvmSuppressWildcards Uri): MediaResource = MediaResource(
-        path = uri.path ?: "",
-        name = uri.lastPathSegment ?: "",
         mimeType = uri.path?.let { path ->
             when {
                 path.endsWith("png", true) -> "image/png"
@@ -53,7 +52,6 @@ fun rememberMyImageSelector(
             }
         } ?: "image/*",
         uri = uri,
-        size = 0L,
     )
 
     val pickerLauncher =

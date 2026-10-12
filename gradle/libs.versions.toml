@@ -1,17 +1,17 @@
 [versions]
 agp = "9.4.1"
-kotlin = "2.4.20"
-coreKtx = "1.19.0"
+kotlin = "2.4.21"
+coreKtx = "1.19.1"
 lifecycleRuntimeKtx = "2.11.0"
 activityCompose = "1.13.0"
 composeBom = "2026.09.00"
-paging = "3.5.1"
+paging = "3.5.2"
 
 # Navigation 3
-nav3Core = "1.1.7"
+nav3Core = "1.2.0"
 lifecycleViewmodelNav3 = "2.11.0"
 lifecycleViewmodelCompose = "2.11.0"
-kotlinSerialization = "2.4.20"
+kotlinSerialization = "2.4.21"
 kotlinxSerializationCore = "1.11.0"
 material3AdaptiveNav3 = "1.3.0"
 material3WindowSizeClassAndroid = "1.4.0"
@@ -23,7 +23,7 @@ shimmer = "1.0.0"
 desugarJdkLibs = "2.1.5"
 
 # Coil
-coilCompose = "3.6.2"
+coilCompose = "3.6.3"
 
 # 权限
 accompanistPermissions = "0.37.3"
@@ -32,10 +32,10 @@ accompanistPermissions = "0.37.3"
 biometric = "1.1.0"
 
 # 图片选择器
-leavesczyMatisse = "2.3.2"
+leavesczyMatisse = "3.0.0"
 
 # 图片缩放
-zoomimageComposeGlide = "1.6.0"
+zoomimageComposeGlide = "1.7.0"
 
 # Window Size Class
 material3WindowSizeClass = "1.4.0"
