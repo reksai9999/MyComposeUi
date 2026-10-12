@@ -49,6 +49,10 @@ data object RouteSelector : NavKey
 @Serializable
 data object RoutePager : NavKey
 
+/** Paging 分页组件示例路由。 */
+@Serializable
+data object RoutePaging : NavKey
+
 /**
  * RouteTabs 路由
  */

@@ -34,6 +34,7 @@ import reksai.compose.ui.ui.navigation.RouteInputText
 import reksai.compose.ui.ui.navigation.RouteInputTextValue
 import reksai.compose.ui.ui.navigation.RouteMenu
 import reksai.compose.ui.ui.navigation.RoutePager
+import reksai.compose.ui.ui.navigation.RoutePaging
 import reksai.compose.ui.ui.navigation.RouteSelector
 import reksai.compose.ui.ui.navigation.RouteSuperText
 import reksai.compose.ui.ui.navigation.RouteSuperWebView
@@ -87,6 +88,10 @@ fun MainScreen(
 
             TitleDesc("Pager") {
                 MyRoute.add(RoutePager)
+            }
+
+            TitleDesc("Paging") {
+                MyRoute.add(RoutePaging)
             }
 
             TitleDesc("Super WebView") {

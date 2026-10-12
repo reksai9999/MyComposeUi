@@ -87,6 +87,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    // MyPaging 的公开 API 使用 LazyPagingItems，向调用方传递 Paging 依赖。
+    api(libs.androidx.paging.compose)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Window Size Class
