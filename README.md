@@ -11,7 +11,7 @@ Maven 坐标：`io.github.reksai9999.mycomposeui:core:<版本号>`
 ### 自动发布
 
 将代码推送到 `release` 分支后，`.github/workflows/auto-release.yml` 会计算下一个
-`vX.Y.Z` 版本，编译并发布 release AAR、源码包、Javadoc 包和 Maven 元数据，成功后 创建相同版本的 tag 和 GitHub Release。没有 tag 时从 `0.0.1` 开始。
+`vX.Y.Z` 版本，编译并发布 release AAR、源码包和 Maven 元数据，成功后 创建相同版本的 tag 和 GitHub Release。没有 tag 时从 `0.0.1` 开始。
 
 Actions 使用内置 `GITHUB_TOKEN`，无需另设 PAT；仓库需要允许 GitHub Actions 运行。 工作流使用 JDK 21（与 Gradle Daemon 配置一致），组件的 JVM 目标仍为 17。
 
