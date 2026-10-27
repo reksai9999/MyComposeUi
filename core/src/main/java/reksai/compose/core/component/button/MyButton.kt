@@ -20,18 +20,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import reksai.compose.core.extension.clickableNormal
-import reksai.compose.core.theme.BaseColors
 import reksai.compose.core.theme.BaseShapes
 import reksai.compose.core.theme.BaseTypography
+import reksai.compose.core.theme.LocalColors
 import reksai.compose.core.theme.LocalShapes
 
 @Composable
 fun MyButton(
     text:String,
     modifier: Modifier = Modifier,
-    backgroundColor:Color = BaseColors.current.red200,
-    borderColor:Color = BaseColors.current.red200,
-    textColor: Color = BaseColors.current.white200,
+    backgroundColor: Color = LocalColors.current.red200,
+    borderColor: Color = LocalColors.current.red200,
+    textColor: Color = LocalColors.current.white200,
     fontSize:TextUnit = TextUnit.Unspecified,
     textStyle: TextStyle = BaseTypography.current.labelMedium,
     buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
@@ -83,8 +83,8 @@ fun MyFillButton(
     modifier: Modifier = Modifier,
     shape: Shape = LocalShapes.current.circle,
     textStyle: TextStyle = BaseTypography.current.labelMedium,
-    backgroundColor: Color = BaseColors.current.red200,
-    textColor: Color = BaseColors.current.white200,
+    backgroundColor: Color = LocalColors.current.red200,
+    textColor: Color = LocalColors.current.white200,
     buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     onClick: (() -> Unit)? = null
 ) {
@@ -109,8 +109,8 @@ fun MyOutlineButton(
     modifier: Modifier = Modifier,
     shape: Shape = LocalShapes.current.circle,
     textStyle: TextStyle = BaseTypography.current.labelMedium,
-    backgroundColor: Color = BaseColors.current.transparent,
-    color: Color = BaseColors.current.red200,
+    backgroundColor: Color = LocalColors.current.transparent,
+    color: Color = LocalColors.current.red200,
     buttonPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     onClick: (() -> Unit)? = null
 ) {

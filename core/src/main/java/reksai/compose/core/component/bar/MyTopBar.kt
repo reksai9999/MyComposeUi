@@ -190,7 +190,8 @@ private fun MyTitleBarPreview() {
     ) {
         MyTopBar(
             title = "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
-            titlePadding = PaddingValues(horizontal = 40.dp, vertical = 10.dp)
+            titlePadding = PaddingValues(horizontal = 40.dp, vertical = 10.dp),
+            showBack = true,
         )
     }
 }
